@@ -78,6 +78,8 @@ echo '</table>';
 <br>
 <br>
 <form action="book.php" method="GET">
+<fieldset>
+<legend>Venue_Booking</legend>
 <br>ID:<br>
 <input type='text' name='id' >
 <br>GROUP:<br>
@@ -90,14 +92,33 @@ echo '</table>';
 <input type='tel' name='tel' >
 <input type='Reset' value='reset'>
 <input type='Submit' value='Submit'>
+</fieldset>
 </form>
 <?php
 }
 else{
 echo 'All venues are booked<br><br>';
+}
 
+$db->query("SELECT * FROM $building WHERE
+Status='booked'");
+if($db->numRows()<>0){
+?>
+<br>
+<p>For the convenience of other groups, please
+release the venue if in any case it will not be of
+use in the forthcoming periods.<br>Release the
+venue by entering the ID for the venue that you
+want to release.</p>
+<form action="release.php" method="GET">
+<fieldset>
+<legend>Venue_Releasing</legend>
+ID:<input type='text' name='ID'><input
+type='Submit' value='RELEASE'>
+</fieldset>
+</form>
 
-
+<?php
 }
 }
 ?>
