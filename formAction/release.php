@@ -10,7 +10,8 @@ $db=new Database('localhost','root',' ',$day);
 $db->query("SELECT * FROM $building WHERE
 ID='".$ID."' AND Status='booked'");
 if($db->numRows()<>0){
-$db->query("UPDATE $building SET Status='free'
+$db->query("UPDATE $building SET
+Status='free',Cohort='....',Course='......',Tel='0700000000',Lec='................'
 WHERE ID='".$ID."'");
 header('Location:index.php');
 }else{
