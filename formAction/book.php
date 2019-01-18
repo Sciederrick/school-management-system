@@ -15,7 +15,7 @@ if(isset($group)&&isset($course)&&isset($lec)&&isset($tel)&&isset($id)&&isset($b
 if(!empty($group)&&!empty($course)&&!empty($lec)&&!empty($tel)&&!empty($id)){
 $db=new Database('localhost','root',' ',$day);
 $db->query("UPDATE $building SET
-Status='booked' WHERE ID='".$id."' AND
+Status='booked',Cohort='".$group."',Course='".$course."',Lec='".$lec."',Tel='".$tel."' WHERE ID='".$id."' AND
 Status='free'");
 header('Location:index.php');
 }else{echo 'Please input data!';}
