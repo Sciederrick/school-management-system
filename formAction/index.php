@@ -5,6 +5,8 @@
 <a href="index.php?p=news">News</a>
 <?php
 
+session_start();
+
 $p=$_GET['p'];
 if(!empty($_GET['p'])){
 $pages_dir='pages';
@@ -37,7 +39,6 @@ require_once '../classes/Database.php';
 //$day=strtolower(date('l'));
 $day='monday';
 $building=$_GET['building'];
-session_start();
 $_SESSION['building_pass']=$building;
 if(isset($building)){
 $db=new Database('localhost','root','
@@ -60,6 +61,18 @@ echo '<br><br>';
 else{
 echo 'Please make a selection!';
 }
+/*Delegating booking and releasing functionality only to classreps*/
+//Connecting to users database
+
+$password=$_SESSION['password_pass'];/*Required for validating who get's the book and release privilege*/
+$db2=new Database('localhost','root',' ','users');
+$db2->query("SELECT user FROM students WHERE password='".$password."'");
+if($db2->numRows()<>0){
+$user=array(array());
+$user=$db2->rows();
+if($user[0]['user']=='classrep'){/*code for showcasing booking and release info and procedures*/
+echo 'Logged in as ',$user[0]['user'];
+
 $db->query("SELECT * FROM $building WHERE
 Status='free'");
 if($db->numRows()<>0){
@@ -120,5 +133,8 @@ type='Submit' value='RELEASE'>
 
 <?php
 }
+}
+else{echo 'Logged in as normal user';}
+}else{echo 'Failed to fetch details from the Database';}
 }
 ?>

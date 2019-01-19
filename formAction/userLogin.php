@@ -13,6 +13,10 @@ else {
 $user_type=$_POST['user_type'];
 $username=$_POST['username'];
 $password=$_POST['password'];
+
+session_start();
+$_SESSION['password_pass']=$password;
+
 if(isset($username)&&!empty($username)){
 if(isset($password)&&!empty($password)){
 $db=new Database('localhost','root',' ','users');
