@@ -64,14 +64,19 @@ echo 'Please make a selection!';
 /*Delegating booking and releasing functionality only to classreps*/
 //Connecting to users database
 
-$password=$_SESSION['password_pass'];/*Required for validating who get's the book and release privilege*/
+$password=$_SESSION['password_pass'];/*Required
+for validating who(classrep) get's the book and
+release privilege by fetching user_type and Cohort*/
 $db2=new Database('localhost','root',' ','users');
-$db2->query("SELECT user FROM students WHERE password='".$password."'");
+$db2->query("SELECT user, Cohort FROM students WHERE password='".$password."'");
 if($db2->numRows()<>0){
-$user=array(array());
-$user=$db2->rows();
-if($user[0]['user']=='classrep'){/*code for showcasing booking and release info and procedures*/
-echo 'Logged in as ',$user[0]['user'];
+$user_cohort=array(array());
+$user_cohort=$db2->rows();
+if($user_cohort[0]['user']=='classrep'){/*code for showcasing booking and release info and procedures*/
+echo 'Logged in as ',$user_cohort[0]['user'];
+
+//Passing a value to release.php for classrep validation
+$_SESSION['user_cohort_pass']=$user_cohort[0]['Cohort'];
 
 $db->query("SELECT * FROM $building WHERE
 Status='free'");
@@ -95,14 +100,18 @@ echo '</table>';
 <legend>Venue_Booking</legend>
 <br>ID:<br>
 <input type='text' name='id' >
-<br>GROUP:<br>
+<!--<br>GROUP:<br>
 <input type='text' name='group' >
+***Trying to minimize user input***
+-->
 <br>COURSE:<br>
 <input type='text' name='course'>
-<br>LECTURER:<br>
+<!--<br>LECTURER:<br>
 <input type='text' name='lec' >
 <br>TEL:<br>
 <input type='tel' name='tel' >
+Minimizing user input!!
+-->
 <input type='Reset' value='reset'>
 <input type='Submit' value='Submit'>
 </fieldset>
@@ -110,7 +119,7 @@ echo '</table>';
 <?php
 }
 else{
-echo 'All venues are booked<br><br>';
+echo '<br><br>All venues are booked<br><br>';
 }
 
 $db->query("SELECT * FROM $building WHERE
