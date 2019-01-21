@@ -29,14 +29,20 @@ $lec=$arr_lec[0]['name'];
 $tel=$arr_lec[0]['tel'];
 
 $db=new Database('localhost','root',' ',$day);
+
+$db->query("SELECT Status FROM $building WHERE
+ID='".$id."'");
+$arr_statuscheck=array(array());
+$arr_statuscheck=$db->rows();
+if($arr_statuscheck[0]['Status']=='free'){
 $db->query("UPDATE $building SET
 Status='booked',Cohort='".$group."',Course='".$course."',Lec='".$lec."',Tel='".$tel."' WHERE ID='".$id."' AND
 Status='free'");
+//header('Location:index.php');
+
 $db->query("SELECT Venue FROM $building WHERE ID='".$id."'");
 $venue=array(array());
 $venue=$db->rows();
-if($db->numRows()<>0){
-//header('Location:index.php');
 echo "Venue ".$venue[0]['Venue']." booked successfully";
 }else{echo '<br>Error on booking.<br>Possible
 scenarios: <br>1. You input a venue ID which is
