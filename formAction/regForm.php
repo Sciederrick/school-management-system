@@ -36,7 +36,7 @@ $user_type=$_POST['user_type'];
 $resemail=$_POST['res_email'];
 $restel=$_POST['res_tel'];
 $resusername=$_POST['res_username'];
-$respassword=$_POST['res_password'];
+$respassword=md5($_POST['res_password']);
 if(isset($resemail)&&isset($restel)&&isset($resusername)&&isset($respassword)){
 if(!empty($resemail)&&!empty($restel)&&!empty($resusername)&&!empty($respassword)){
 $db->query("UPDATE $user_type SET
