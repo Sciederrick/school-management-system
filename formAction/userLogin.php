@@ -12,7 +12,7 @@ header('Location: ../htmlpages/resetRetrieve.html');
 else {
 $user_type=$_POST['user_type'];
 $username=$_POST['username'];
-$password=$_POST['password'];
+$password=md5($_POST['password']);
 
 session_start();
 $_SESSION['password_pass']=$password;

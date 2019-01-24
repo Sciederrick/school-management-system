@@ -3,26 +3,32 @@ require_once '../classes/Database.php';
 
 $db=new Database('localhost','root',' ','users');
 $regno=$_POST['regno'];
+$cohort=$_POST['cohort'];
 $username=$_POST['username'];
 $telephone=$_POST['tel'];
 $email=$_POST['email'];
-$password=$_POST['password'];
+$password=md5($_POST['password']);
 if(isset($regno)&&isset($username)&&isset($telephone)&&isset($email)&&isset($password)){
 if(!empty($regno)&&!empty($username)&&!empty($telephone)&&!empty($email)&&!empty($password)){
-$db->query("INSERT INTO classreps
-VALUES('$regno','$username','$telephone','$email','$password')");
+$db->query("INSERT INTO
+students
+(regno,Cohort,name,tel,email,password)
+VALUES('$regno','$cohort','$username','$telephone','$email','$password')");
+echo 'Student registration successful!';
 }
 }
 $empno=$_POST['empno'];
 $username=$_POST['username'];
 $telephone=$_POST['tel'];
 $email=$_POST['email'];
-$password=$_POST['password'];
+$password=md5($_POST['password']);
+$course=$_POST['course'];
 if(isset($empno)&&isset($username)&&isset($telephone)&&isset($email)&&isset($password)){
 if(!empty($empno)&&!empty($username)&&!empty($telephone)&&!empty($email)&&!empty($password)){
 $db->query("INSERT INTO lecturers
-VALUES('$empno','$username','$telephone','$email','$password')");
+VALUES('$empno','$username','$telephone','$email','$password','$course')");
 }
+echo 'Lecturer registration successful!';
 }
 //RESETTING USERNAME AND PASSWORD
 $user_type=$_POST['user_type'];
