@@ -7,14 +7,14 @@ $ID=$_GET['ID'];
 //$day=strtolower(date('l'));
 $day='monday';
 $db=new Database('localhost','root',' ',$day);
-$db->query("SELECT Cohort,Venue FROM $building WHERE
-ID='".$ID."' AND Status='booked'");//Changed * to Cohort
+$db->query("SELECT cohort,venue FROM $building WHERE
+ID='".$ID."' AND status='booked'");//Changed * to Cohort
 if($db->numRows()<>0){
 //Adding variables
 $cohort=array(array());
 $cohort=$db->rows();
 $arr_cohort=array();
-$str=$cohort[0]['Cohort'];
+$str=$cohort[0]['cohort'];
 $arr_cohort=explode(",",$str);
 /*Fetching the Cohort from index.php using
  * $_SESSION*/
@@ -36,12 +36,12 @@ elseif(($user_cohort<>$arr_cohort[$n])&&($n==4)){
 //echo '<br>';print_r($user_cohort);echo '<br>';
 //print_r($arr_cohort);
 exit("You are under no jurisdiction to release
-".$cohort[0]['Venue']);
+".$cohort[0]['venue']);
 }//end if
 }//end for  ..,Validating classreps for releasing venues
 
 $db->query("UPDATE $building SET
-Status='free',Cohort='....',Course='......',Tel='0700000000',Lec='................'
+status='free',Cohort='....',course='......',tel='0700000000',lec='................'
 WHERE ID='".$ID."'");
 //header('Location:index.php');
 echo "Venue ".$cohort[0]['Venue']." released

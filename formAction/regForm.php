@@ -12,7 +12,7 @@ if(isset($regno)&&isset($username)&&isset($telephone)&&isset($email)&&isset($pas
 if(!empty($regno)&&!empty($username)&&!empty($telephone)&&!empty($email)&&!empty($password)){
 $db->query("INSERT INTO
 students
-(regno,Cohort,name,tel,email,password)
+(regno,cohort,name,tel,email,password)
 VALUES('$regno','$cohort','$username','$telephone','$email','$password')");
 echo 'Student registration successful!';
 }

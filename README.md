@@ -1,5 +1,4 @@
-# school-management-system
-Venue booking system for lecture halls. 
+
 
 DB STRUCTURE::
 
@@ -16,7 +15,7 @@ MariaDB [users]> describe students;
 | regno    | varchar(15)  | NO   | PRI | COM/00/00           |       |
 | Cohort   | varchar(255) | YES  |     | NULL                |       |
 | name     | varchar(255) | YES  |     | NULL                |       |
-| user     | varchar(10)  | NO   |     | student             |       |
+| user     | enum('student','classrep')| NO   |     | student             |       |
 | tel      | varchar(14)  | NO   |     | +254700000000       |       |
 | email    | varchar(255) | NO   |     | youremail@gmail.com |       |
 | password | varchar(255) | YES  |     | NULL                |       |

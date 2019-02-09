@@ -21,7 +21,7 @@ if(!empty($course)&&!empty($id)){
 
 $db2=new Database('localhost','root',' ','users');
 $db2->query("SELECT name, tel FROM lecturers WHERE
-Course REGEXP '".$course."'");
+course REGEXP '".$course."'");
 if($db2->numRows()<>0){
 $arr_lec=array(array());
 $arr_lec=$db2->rows();
@@ -31,18 +31,18 @@ $tel=$arr_lec[0]['tel'];
 tel details');}
 $db=new Database('localhost','root',' ',$day);
 
-$db->query("SELECT Status FROM $building WHERE
+$db->query("SELECT status FROM $building WHERE
 ID='".$id."'");
 if($db->numRows()<>0){
 $arr_statuscheck=array(array());
 $arr_statuscheck=$db->rows();
-if($arr_statuscheck[0]['Status']=='free'){
+if($arr_statuscheck[0]['status']=='free'){
 $db->query("UPDATE $building SET
-Status='booked',Cohort='".$group."',Course='".$course."',Lec='".$lec."',Tel='".$tel."' WHERE ID='".$id."' AND
-Status='free'");
+status='booked',cohort='".$group."',course='".$course."',lec='".$lec."',tel='".$tel."' WHERE ID='".$id."' AND
+status='free'");
 //header('Location:index.php');
 
-$db->query("SELECT Venue FROM $building WHERE ID='".$id."'");
+$db->query("SELECT venue FROM $building WHERE ID='".$id."'");
 $venue=array(array());
 $venue=$db->rows();
 echo "Venue ".$venue[0]['Venue']." booked successfully";

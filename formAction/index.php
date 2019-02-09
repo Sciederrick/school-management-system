@@ -68,7 +68,7 @@ $password=$_SESSION['password_pass'];/*Required
 for validating who(classrep) get's the book and
 release privilege by fetching user_type and Cohort*/
 $db2=new Database('localhost','root',' ','users');
-$db2->query("SELECT user, Cohort FROM students WHERE password='".$password."'");
+$db2->query("SELECT user,cohort FROM students WHERE password='".$password."'");
 if($db2->numRows()<>0){
 $user_cohort=array(array());
 $user_cohort=$db2->rows();
@@ -76,10 +76,10 @@ if($user_cohort[0]['user']=='classrep'){/*code for showcasing booking and releas
 echo 'Logged in as ',$user_cohort[0]['user'];
 
 //Passing a value to release.php for classrep validation
-$_SESSION['user_cohort_pass']=$user_cohort[0]['Cohort'];
+$_SESSION['user_cohort_pass']=$user_cohort[0]['cohort'];
 
 $db->query("SELECT * FROM $building WHERE
-Status='free'");
+status='free'");
 if($db->numRows()<>0){
 echo "<table border='1'>";
 foreach($db->rows() as $value){
@@ -123,7 +123,7 @@ echo '<br><br>All venues are booked<br><br>';
 }
 
 $db->query("SELECT * FROM $building WHERE
-Status='booked'");
+status='booked'");
 if($db->numRows()<>0){
 ?>
 <br>
