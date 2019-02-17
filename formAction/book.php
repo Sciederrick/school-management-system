@@ -19,7 +19,7 @@ $id=$_GET['id'];
 if(isset($course)&&isset($id)&&isset($building)){
 if(!empty($course)&&!empty($id)){
 
-$db2=new Database('localhost','root',' ','users');
+$db2=new Database('localhost','root','derrick8','users');
 $db2->query("SELECT name, tel FROM lecturers WHERE
 course REGEXP '".$course."'");
 if($db2->numRows()<>0){
@@ -29,7 +29,7 @@ $lec=$arr_lec[0]['name'];
 $tel=$arr_lec[0]['tel'];
 }else{exit('..processing. Error fetching name and
 tel details');}
-$db=new Database('localhost','root',' ',$day);
+$db=new Database('localhost','root','derrick8',$day);
 
 $db->query("SELECT status FROM $building WHERE
 ID='".$id."'");
@@ -45,7 +45,7 @@ status='free'");
 $db->query("SELECT venue FROM $building WHERE ID='".$id."'");
 $venue=array(array());
 $venue=$db->rows();
-echo "Venue ".$venue[0]['Venue']." booked successfully";
+echo "Venue ".$venue[0]['venue']." booked successfully";
 }else{echo '<br>Error on booking.<br>Possible
 scenarios: <br>1. You input a venue ID which is
 already booked or is non-existent.<br>2. You input

@@ -1,7 +1,7 @@
 <?php
 require_once '../classes/Database.php';
 
-$db=new Database('localhost','root',' ','users');
+$db=new Database('localhost','root','derrick8','users');
 $regno=$_POST['regno'];
 $cohort=$_POST['cohort'];
 $username=$_POST['username'];
@@ -66,8 +66,8 @@ echo 'Invalid email or phone number';
 }else{
 ?>
 <p><a
-href="mailto:'$retemail'?subject=Username and
-Password&body='$db->result()'">Send Username and
+href="mailto:<?php echo'$retemail'?>?subject=Username and
+Password&body=<?php foreach($db->rows() as $value){foreach($value as $val){echo '$val'; } }?>">Send Username and
 Password to your email</a></p>
 <?php
 }

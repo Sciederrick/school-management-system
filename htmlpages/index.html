@@ -1,11 +1,130 @@
 <!DOCTYPE html>
 <html><!--this is a html document-->
-<frameset rows="20%,65%,15%" border="0">
-<frame src="header.html" >
-<frameset cols="70%,30%" >
-<frame src="loginForm.html">
-<frame src="info.html" >
-</frameset>
-<frame src="footer.html">
-</frameset>
+<body>
+<form action="index.php"  method="GET">
+<select name="building" size="2">
+<option value="tech_clone">TECH
+<option value="biological_clone">BIOLOGICAL
+<option value="hr_clone">HR
+<option value="education_clone">EDUCATION
+<option value="arts_clone">ARTS
+</select>
+<input type="Submit" value="SUBMIT">
+</form>
+
+<?php
+
+require_once '../classes/Database.php';
+//$day=strtolower(date('l'));
+$day='monday';
+$building=$_GET['building'];
+$_SESSION['building_pass']=$building;
+if(isset($building)){
+$db=new Database('localhost','root','derrick8',$day);
+$db->query("SELECT * FROM $building");
+if($db->numRows()<>0){
+echo '<br>';
+echo "<table border='1'>";
+foreach($db->rows() as $value){
+echo '<tr>';
+foreach($value as $val){
+echo '<td><pre>'.$val.'</pre></td>';
+}
+echo '</tr>';
+}
+echo '</table>';
+echo '<br><br>';
+
+}
+else{
+echo 'Please make a selection!';
+}
+/*Delegating booking and releasing functionality only to classreps*/
+//Connecting to users database
+
+$password=$_SESSION['password_pass'];/*Required
+for validating who(classrep) get's the book and
+release privilege by fetching user_type and Cohort*/
+$user_type=$_SESSION['usertype_pass'];//added this
+$db2=new Database('localhost','root','derrick8','users');
+$db2->query("SELECT students.user, students.cohort, lecturers.name FROM students, lecturers WHERE students.password='".$password."' OR  lecturers.password='".$password."'");
+if($db2->numRows()<>0){
+$user_cohort=array(array());
+$user_cohort=$db2->rows();
+if($user_cohort[0]['user']=='classrep'||$user_type=='lecturers'){/*code for showcasing booking and release info and procedures*/
+//echo 'Logged in as ',$user_cohort[0]['user'];//change this later!
+
+//Passing a value to release.php for classrep validation
+$_SESSION['user_cohort_pass']=$user_cohort[0]['cohort'];
+
+$db->query("SELECT * FROM $building WHERE
+status='free'");
+if($db->numRows()<>0){
+echo "<table border='1'>";
+foreach($db->rows() as $value){
+echo '<tr>';
+foreach($value as $val){
+echo '<td>';
+echo '<pre>'.$val.'</pre>';
+echo '</td>';
+}
+echo '</tr>';
+}
+echo '</table>';
+?>
+<br>
+<br>
+<form action="book.php" method="GET">
+<fieldset>
+<legend>Venue_Booking</legend>
+<br>ID:<br>
+<input type='text' name='id' >
+<!--<br>GROUP:<br>
+<input type='text' name='group' >
+***Trying to minimize user input***
+-->
+<br>COURSE:<br>
+<input type='text' name='course'>
+<!--<br>LECTURER:<br>
+<input type='text' name='lec' >
+<br>TEL:<br>
+<input type='tel' name='tel' >
+Minimizing user input!!
+-->
+<input type='Reset' value='reset'>
+<input type='Submit' value='Submit'>
+</fieldset>
+</form>
+<?php
+}
+else{
+echo '<br><br>All venues are booked<br><br>';
+}
+
+$db->query("SELECT * FROM $building WHERE
+status='booked'");
+if($db->numRows()<>0){
+?>
+<br>
+<p>For the convenience of other groups, please
+release the venue if in any case it will not be of
+use in the forthcoming periods.<br>Release the
+venue by entering the ID for the venue that you
+want to release.</p>
+<form action="release.php" method="GET">
+<fieldset>
+<legend>Venue_Releasing</legend>
+ID:<input type='text' name='ID'><input
+type='Submit' value='RELEASE'>
+</fieldset>
+</form>
+
+<?php
+}
+}
+else{echo 'Logged in as normal user';}
+}else{echo 'Failed to fetch details from the Database';}
+}
+?>
+</body>
 </html>

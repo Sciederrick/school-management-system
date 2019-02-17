@@ -24,25 +24,37 @@ echo 'Sorry Page Not Found';
 ?>
 <form action="index.php"  method="GET">
 <select name="building" size="2">
-<option value="tech">TECH
-<option value="biological">BIOLOGICAL
-<option value="hr">HR
-<option value="education">EDUCATION
-<option value="arts">ARTS
+<option value="tech_clone">TECH
+<option value="biological_clone">BIOLOGICAL
+<option value="hr_clone">HR
+<option value="education_clone">EDUCATION
+<option value="arts_clone">ARTS
 </select>
 <input type="Submit" value="SUBMIT">
 </form>
 
 <?php
-
 require_once '../classes/Database.php';
-//$day=strtolower(date('l'));
-$day='monday';
+
+//updating table contents before showcasing
+//biological ----> biological_clone
+date_default_timezone_set("Africa/Nairobi");
+
+$day='monday';//$day=strtolower(date('l'));
+$time=date('H:i');
 $building=$_GET['building'];
 $_SESSION['building_pass']=$building;
+
+if ($time=='12:39'){
+$db=new Database('localhost', 'root', 'derrick8' ,$day);
+$db->query("TRUNCATE TABLE $building");
+$pos=strrpos($building,'_');
+$original_tbl=substr($building,0,$pos);
+$db->query("INSERT INTO $building SELECT * FROM $original_tbl");
+}
+
 if(isset($building)){
-$db=new Database('localhost','root','
-',$day);
+$db=new Database('localhost','root','derrick8',$day);
 $db->query("SELECT * FROM $building");
 if($db->numRows()<>0){
 echo '<br>';
@@ -67,13 +79,14 @@ echo 'Please make a selection!';
 $password=$_SESSION['password_pass'];/*Required
 for validating who(classrep) get's the book and
 release privilege by fetching user_type and Cohort*/
-$db2=new Database('localhost','root',' ','users');
-$db2->query("SELECT user,cohort FROM students WHERE password='".$password."'");
+$user_type=$_SESSION['usertype_pass'];//added this
+$db2=new Database('localhost','root','derrick8','users');
+$db2->query("SELECT students.user, students.cohort, lecturers.name FROM students, lecturers WHERE students.password='".$password."' OR  lecturers.password='".$password."'");
 if($db2->numRows()<>0){
 $user_cohort=array(array());
 $user_cohort=$db2->rows();
-if($user_cohort[0]['user']=='classrep'){/*code for showcasing booking and release info and procedures*/
-echo 'Logged in as ',$user_cohort[0]['user'];
+if($user_cohort[0]['user']=='classrep'||$user_type=='lecturers'){/*code for showcasing booking and release info and procedures*/
+//echo 'Logged in as ',$user_cohort[0]['user'];//change this later!
 
 //Passing a value to release.php for classrep validation
 $_SESSION['user_cohort_pass']=$user_cohort[0]['cohort'];
@@ -139,7 +152,11 @@ ID:<input type='text' name='ID'><input
 type='Submit' value='RELEASE'>
 </fieldset>
 </form>
-
+<script>
+setInterval(function(){
+	window.location.reload(false)
+},15000)
+</script>
 <?php
 }
 }

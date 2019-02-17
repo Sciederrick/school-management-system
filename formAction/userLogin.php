@@ -16,10 +16,11 @@ $password=md5($_POST['password']);
 
 session_start();
 $_SESSION['password_pass']=$password;
-
+$_SESSION['usertype_pass']=$user_type;
+//made changes above
 if(isset($username)&&!empty($username)){
 if(isset($password)&&!empty($password)){
-$db=new Database('localhost','root',' ','users');
+$db=new Database('localhost','root','derrick8','users');
 $db->query("SELECT * FROM
 $user_type WHERE name='".$username."'AND
 password='".$password."'");
