@@ -1,39 +1,36 @@
 <?php
 require_once '../classes/Database.php';
-$new_user=$_GET['new_user'];
-$resetting=$_GET['resetting'];
-$retrieving=$_GET['retrieving'];
-if(isset($new_user)&&($new_user=='new_user')){
-header('Location: ../htmlpages/regForms.html');
+$user_request=$_GET['user_request'];
+	if(isset($user_request)&&($user_request=='new_user')){
+		header('Location: ../htmlpages/regForms.html');
 }
-elseif((isset($resetting)&&($resetting=='resetting'))||(isset($retrieving)&&($retrieving=='retrieving'))){
-header('Location: ../htmlpages/resetRetrieve.html');
+	elseif((isset($user_request)&&($user_request=='resetting'))||(isset($user_request)&&($user_request=='retrieving'))){
+		header('Location: ../htmlpages/resetRetrieve.html');
 }
-else {
-$user_type=$_POST['user_type'];
-$username=$_POST['username'];
-$password=md5($_POST['password']);
+	else {
+//logging in
+		$user_type=$_POST['user_type'];
+		$username=$_POST['username'];
+		$password=md5($_POST['password']);
 
 session_start();
 $_SESSION['password_pass']=$password;
 $_SESSION['usertype_pass']=$user_type;
-//made changes above
-if(isset($username)&&!empty($username)){
-if(isset($password)&&!empty($password)){
-$db=new Database('localhost','root','derrick8','users');
-$db->query("SELECT * FROM
-$user_type WHERE name='".$username."'AND
-password='".$password."'");
-if($db->numRows()==0){
-echo 'Wrong username or password';
+
+	if(isset($username)&&!empty($username)){
+		if(isset($password)&&!empty($password)){
+		$db=new Database('localhost','root','derrick8','users');
+		$db->query("SELECT * FROM $user_type WHERE name='".$username."'AND password='".$password."'");
+			if($db->numRows()==0){
+				echo 'Wrong username or password';
 }
-else{
-header('Location: index.php');
+			else{
+				header('Location: index.php');
 }
 }
 }
-else{
-echo 'Fields Unset';
+		else{
+			echo 'Fields Unset';
 }
 }
 ?>

@@ -1,43 +1,25 @@
 <html>
 <!--LOGIN FORM-->
-<p>Login as:</p>
-<form action="../formAction/userLogin.php" method="POST">
-<input type="radio" name="user_type"
-value="students" checked>Student<br>
-<input type="radio" name="user_type"
-value="lecturers">Lecturer
-<br>Username:<br>
-<input type='text' name='username'>
-<br>Password:</br>
-<input type='password' name='password'>
-<input type="Submit" value="SUBMIT">
-<input type="reset" value="RESET">
-</form>
+	<form action="../formAction/userLogin.php" method="POST">
+	<p>Login as:<p>
+		<input type="radio" name="user_type" value="students" checked>Student<br>
+		<input type="radio" name="user_type" value="lecturers">Lecturer<br>
+		Username:<br>
+		<input type='text' name='username'><br>
+		Password:</br>
+		<input type='password' name='password'><br>
+		<input type="Submit" value="SUBMIT">
+		<input type="reset" value="RESET">
+	</form>
 <br>
 <br>
-<!--RETRIEVE OR RESET USERNAME AND PASSWORD-->
-<form action="../formAction/userLogin.php"
-method="GET">
-<input type="checkbox" name="resetting"
-value="resetting">Reset Username and
-Password
-<input type="Submit" value="SUBMIT">
-</form>
-<br>
-<form action="../formAction/userLogin.php"
-method="GET">
-<input type="checkbox" name="retrieving"
-value="retrieving">Forgot Username and Password
-<input type="Submit" value="SUBMIT">
-</form>
-<br>
-<!--ENQUIRY FOR A REGISTRATION FORM-->
-<form action="../formAction/userLogin.php"
-method="GET">
-<input type="checkbox" name="new_user"
-value="new_user"
->New User?
-<input type="Submit" value="SUBMIT">
-</form>
+<!--Reset, Retrieve, New User-->
+
+	<form action="../formAction/userLogin.php" method="GET">
+      		<input type="radio" name="user_request" value="resetting">Reset Username and Password<br><br>
+      		<input type="radio" name="user_request" value="retrieving">Forgot Username and Password<br><br>
+      		<input type="radio" name="user_request" value="new_user">New User?<br><br>
+      		<input type="Submit" value="SUBMIT">
+	</form>
 </html>
 

@@ -21,18 +21,17 @@ if(!empty($course)&&!empty($id)){
 
 $db2=new Database('localhost','root','derrick8','users');
 $db2->query("SELECT name, tel FROM lecturers WHERE
-course REGEXP '".$course."'");
+course REGEXP '".$course."'") or die(mysql_error());
 if($db2->numRows()<>0){
 $arr_lec=array(array());
 $arr_lec=$db2->rows();
 $lec=$arr_lec[0]['name'];
 $tel=$arr_lec[0]['tel'];
-}else{exit('..processing. Error fetching name and
-tel details');}
+}
 $db=new Database('localhost','root','derrick8',$day);
 
 $db->query("SELECT status FROM $building WHERE
-ID='".$id."'");
+ID='".$id."'") or die(mysql_error());
 if($db->numRows()<>0){
 $arr_statuscheck=array(array());
 $arr_statuscheck=$db->rows();
@@ -52,6 +51,6 @@ already booked or is non-existent.<br>2. You input
 a course that is non-existent.<br>3. Database
 error, please contact the administrator(visit the
 "Contact us" page).';}
-}else{exit('failed to fetch status');}}else{echo 'Please input data!';}
+}}else{echo 'Please input data!';}
 }
 ?>

@@ -42,7 +42,7 @@ exit("You are under no jurisdiction to release
 
 $db->query("UPDATE $building SET
 status='free',Cohort='....',course='......',tel='0700000000',lec='................'
-WHERE ID='".$ID."'");
+WHERE ID='".$ID."'") or die(mysql_error());
 //header('Location:index.php');
 echo "Venue ".$cohort[0]['Venue']." released
 successfully.";

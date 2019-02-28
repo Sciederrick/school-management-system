@@ -13,7 +13,7 @@ if(!empty($regno)&&!empty($username)&&!empty($telephone)&&!empty($email)&&!empty
 $db->query("INSERT INTO
 students
 (regno,cohort,name,tel,email,password)
-VALUES('$regno','$cohort','$username','$telephone','$email','$password')");
+VALUES('$regno','$cohort','$username','$telephone','$email','$password')") or die(mysql_error());
 echo 'Student registration successful!';
 }
 }
@@ -26,7 +26,7 @@ $course=$_POST['course'];
 if(isset($empno)&&isset($username)&&isset($telephone)&&isset($email)&&isset($password)){
 if(!empty($empno)&&!empty($username)&&!empty($telephone)&&!empty($email)&&!empty($password)){
 $db->query("INSERT INTO lecturers
-VALUES('$empno','$username','$telephone','$email','$password','$course')");
+VALUES('$empno','$username','$telephone','$email','$password','$course')") or die(mysql_error());
 }
 echo 'Lecturer registration successful!';
 }
@@ -42,7 +42,7 @@ if(!empty($resemail)&&!empty($restel)&&!empty($resusername)&&!empty($respassword
 $db->query("UPDATE $user_type SET
 name='".$resusername."', 
 password='".$respassword."' WHERE
-email='".$resemail."' AND tel='".$restel."'");
+email='".$resemail."' AND tel='".$restel."'") or die(mysql_error());
 $db->query("SELECT name, password FROM $user_type
 WHERE name='".$resusername."' AND
 password='".$respassword."'");
