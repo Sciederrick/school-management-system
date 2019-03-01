@@ -2,12 +2,12 @@
 <!--LOGIN FORM-->
 	<form action="../formAction/userLogin.php" method="POST">
 	<p>Login as:<p>
-		<input type="radio" name="user_type" value="students" checked>Student<br>
-		<input type="radio" name="user_type" value="lecturers">Lecturer<br>
-		Username:<br>
-		<input type='text' name='username'><br>
-		Password:</br>
-		<input type='password' name='password'><br>
+	        <input type="radio" name="user_type" value="students" checked><label for="form-login-as-student">Student</label><br>
+	        <input type="radio" name="user_type" value="lecturers"><label for="form-login-as-lecturer">Lecturer</label><br>
+	        <label for="form-login-username">Username:</label><br>
+		<input type='text' name='username' id="form-login-username"><br>
+	        <label for="form-login-password">Password:</label></br>
+		<input type='password' name='password' id="form-login-password"><br>
 		<input type="Submit" value="SUBMIT">
 		<input type="reset" value="RESET">
 	</form>
@@ -16,10 +16,10 @@
 <!--Reset, Retrieve, New User-->
 
 	<form action="../formAction/userLogin.php" method="GET">
-      		<input type="radio" name="user_request" value="resetting">Reset Username and Password<br><br>
-      		<input type="radio" name="user_request" value="retrieving">Forgot Username and Password<br><br>
-      		<input type="radio" name="user_request" value="new_user">New User?<br><br>
-      		<input type="Submit" value="SUBMIT">
+      	       <input type="radio" name="user_request" value="resetting" id="form-login-reset"><label for="form-login-reset">Reset Username and Password</label><br><br>
+      	       <input type="radio" name="user_request" value="retrieving" id="form-login-retrieve"><label for="form-login-retrieve">Forgot Username and Password</label><br><br>
+      	       <input type="radio" name="user_request" value="new_user" id="form-login-new-user"><label for="form-login-new-user">New User?</label><br><br>
+      	       <input type="Submit" value="SUBMIT">
 	</form>
 </html>
 

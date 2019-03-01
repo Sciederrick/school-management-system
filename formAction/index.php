@@ -1,7 +1,7 @@
 	<form action="index.php"  method="GET">
-		<select name="building" size="2">
+		<select name="building" size="1">
 			<option value="tech_clone">TECH
-			<option value="biological_clone">BIOLOGICAL
+			<option value="biological_clone" selected>BIOLOGICAL
 			<option value="hr_clone">HR
 			<option value="education_clone">EDUCATION
 			<option value="arts_clone">ARTS
@@ -81,10 +81,10 @@ $db2->query("SELECT students.user, students.cohort, lecturers.name FROM students
 	<form action="book.php" method="GET">
 		<fieldset>
 			<legend>Venue_Booking</legend>
-				<br>ID:<br>
-				<input type='text' name='id' >
-				<br>COURSE:<br>
-				<input type='text' name='course'>
+				<br><label for="index-php-book-ID">ID:</label><br>
+				<input type='text' name='id' id="index-php-book-ID">
+				<br><label for="index-php-course">COURSE:</label><br>
+				<input type='text' name='course' id="index-php-course">
 				<input type='Reset' value='reset'>
 				<input type='Submit' value='Submit'>
 		</fieldset>
@@ -107,7 +107,8 @@ want to release.</p>
 	<form action="release.php" method="GET">
 		<fieldset>
 			<legend>Venue_Releasing</legend>
-				ID:<input type='text' name='ID'><input type='Submit' value='RELEASE'>
+			       <label for="index-php-release-ID">ID:</label><input type='text' name='ID' id="index-php-release-ID">
+			       <input type='Submit' value='RELEASE'>
 		</fieldset>
 	</form>
 		<script>
