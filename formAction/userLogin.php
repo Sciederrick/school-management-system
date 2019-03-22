@@ -19,7 +19,7 @@ $_SESSION['usertype_pass']=$user_type;
 
 	if(isset($username)&&!empty($username)){
 		if(isset($password)&&!empty($password)){
-		$db=new Database('localhost','root','derrick8','users');
+		$db=new Database('localhost','root','','booking_system');
 		$db->query("SELECT * FROM $user_type WHERE name='".$username."'AND password='".$password."'");
 			if($db->numRows()==0){
 				echo 'Wrong username or password';
