@@ -3,11 +3,10 @@
 require_once '../classes/Database.php';
 session_start();
 $building=$_SESSION['building_pass'];
-$ID=$_GET['ID'];
-//$day=strtolower(date('l'));
-$day='monday';
-$db=new Database('localhost','root',' ',$day);
-$db->query("SELECT cohort,venue FROM $building WHERE
+$ID=$_GET['id'];
+$day=strtolower(date('l'));
+$db=new Database('localhost','root','','booking_system');
+$db->query("SELECT cohort,venue FROM timetable WHERE
 ID='".$ID."' AND status='booked'");//Changed * to Cohort
 if($db->numRows()<>0){
 //Adding variables
@@ -40,10 +39,9 @@ exit("You are under no jurisdiction to release
 }//end if
 }//end for  ..,Validating classreps for releasing venues
 
-$db->query("UPDATE $building SET
-status='free',Cohort='....',course='......',tel='0700000000',lec='................'
-WHERE ID='".$ID."'") or die(mysql_error());
-//header('Location:index.php');
+$db->query("UPDATE timetable SET
+status='free',cohort='....',course_code='......'
+WHERE ID='".$ID."'");
 echo "Venue ".$cohort[0]['Venue']." released
 successfully.";
 }else{

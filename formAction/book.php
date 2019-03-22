@@ -2,14 +2,7 @@
 session_start();
 $building=$_SESSION['building_pass'];
 require_once '../classes/Database.php';
-//$day=strtolower(date('l'));
-
-$day='monday';
-//$group=$_GET['group'];
-/*Diverted from above since it would be obvious
- * that a classrep would only book for his group
- * i.e CS, BSE and not for some other group
- Hence the following*/
+$day=strtolower(date('l'));
 $group=$_SESSION['user_cohort_pass'];
 $course=$_GET['course'];
 //$lec=$_GET['lec'];
@@ -18,8 +11,8 @@ $id=$_GET['id'];
 
 if(isset($course)&&isset($id)&&isset($building)){
 if(!empty($course)&&!empty($id)){
-
-$db2=new Database('localhost','root','derrick8','users');
+/*
+$db2=new Database('localhost','root','','booking_system');
 $db2->query("SELECT name, tel FROM lecturers WHERE
 course REGEXP '".$course."'") or die(mysql_error());
 if($db2->numRows()<>0){
@@ -28,20 +21,20 @@ $arr_lec=$db2->rows();
 $lec=$arr_lec[0]['name'];
 $tel=$arr_lec[0]['tel'];
 }
-$db=new Database('localhost','root','derrick8',$day);
+ */
+$db=new Database('localhost','root','','booking_system');
 
-$db->query("SELECT status FROM $building WHERE
-ID='".$id."'") or die(mysql_error());
+$db->query("SELECT status FROM timetable WHERE
+id='".$id."'");
 if($db->numRows()<>0){
 $arr_statuscheck=array(array());
 $arr_statuscheck=$db->rows();
 if($arr_statuscheck[0]['status']=='free'){
-$db->query("UPDATE $building SET
-status='booked',cohort='".$group."',course='".$course."',lec='".$lec."',tel='".$tel."' WHERE ID='".$id."' AND
+$db->query("UPDATE timetable SET
+status='booked',cohort='".$group."',course_code='".$course."' WHERE id='".$id."' AND
 status='free'");
-//header('Location:index.php');
 
-$db->query("SELECT venue FROM $building WHERE ID='".$id."'");
+$db->query("SELECT venue FROM timetable WHERE id='".$id."'");
 $venue=array(array());
 $venue=$db->rows();
 echo "Venue ".$venue[0]['venue']." booked successfully";
