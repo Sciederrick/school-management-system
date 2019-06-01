@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Venue_Management_System|Login</title>
+		<link href="css/style.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div id="login_container">
+			<div class="login_form">
+				<form action="pageAction/login.php" method="POST" name="form"  id="login_form" onsubmit="return validate();">	
+					<figure>
+						<img src="img/logo.png" id="mulogo">
+					</figure>			
+							<table>
+								<tr>
+									<td>
+									<input type="text" name="reg_no" placeholder="registration number" id="reg_no" required="required">
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<input type="password" name="password" placeholder="password" id="password" required="required">
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<p style="text-align:center"><a href="registration.html">Register</a></p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<input type="submit" value="login" id="submit">
+									</td>
+								</tr>
+							</table>				
+					</form>
+				</div>
+			</div>
+			<div id="copyright">
+				<p>
+				&copy;&nbsp;2019&nbsp;MOI&nbsp;University.All&nbsp;rights&nbsp;reserved.
+				</p>
+			</div>
+		
+		<script src="js/login_validation.js"></script>	
+		<noscript>Javascript in your browser has been disabled!</noscript>
+	</body>
+</html>
