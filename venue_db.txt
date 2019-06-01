@@ -1,7 +1,0 @@
-1	LR1	biological	7thJan-12thApril2019	monday	0700-0900	CS3.1	booked	COM311
-2	LR1	biological	7thJan-12thApril2019	monday	1500-1700	\N	booked	STA429
-3	LR1	biological	7thJan-12thApril2019	monday	1300-1500	CS2.1	booked	COM215
-4	LR1	biological	7thJan-12thApril2019	monday	0700-0900	CS3.1	booked	COM311
-5	LR1	biological	7thJan-12thApril2019	monday	1100-1300	BSE1.1	booked	CHE111
-6	LR1	biological	7thJan-12thApril2019	monday	1700-1900	BSC4.1	booked	BOT420
-7	LR1	biological	7thJan-12thApril2019	monday	0900-1100	BSC3.1	booked	CHE310
