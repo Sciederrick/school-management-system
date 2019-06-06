@@ -1,0 +1,300 @@
+body{
+    padding:0;
+	margin:0;
+	font-family:cursive;
+	background-color:#1E2C22;
+}
+#copyright{
+	position:absolute;
+	bottom:0%;
+	right:0%;
+	visibility:hidden;
+}
+
+/*Login page*/
+ #login_container{
+	display:flex;
+	justify-content: center;
+	align-content:center;
+ }
+
+.login_form input{
+	width: 400px;
+	height:50px;
+	border-radius:30px;
+	margin-bottom:5px;
+	text-align:center;
+}
+
+.login_form p a{
+	text-decoration:none;
+	color:#F7FDD4;
+}
+
+/*Registration page layout*/
+#registration_container{
+	display:flex;
+	justify-content: center;
+	align-content:center;
+}
+
+/*registration page decor*/
+.registration_form input{
+	width:400px;
+	height:40px;
+	border-radius:30px;
+	text-align:center;
+	margin-bottom:10px;
+}
+
+.registration_form td p{
+	color:#F7FDD4;
+	text-align: center;
+	font-weight:bolder;
+	padding-bottom:20px;
+}
+
+.registration_form td img{
+	position:relative;
+	left:45%;
+	top:10%;
+}
+
+/*index page layout*/
+
+.header{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:75px;
+	padding:20px;
+	background:url('../img/image1.png');	
+}
+
+.nav{
+	position: fixed;
+	top:115px;
+	left:0;
+	width:25%;
+	height:100%;
+	padding-top:8%;	
+	background-color:#1E2C22;		
+}
+
+.main{
+	position:relative;
+	top:110px;
+	left:350px;
+	width:73%;
+	height:100%;
+}
+
+.header h1{
+	font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-size:24px;
+	text-align:center;
+	color:#F7FDD4;
+	text-shadow:2px 1px black;
+}
+
+.nav table{
+	width:98%;
+	height:50%;
+}
+
+.nav table tr{
+	text-align:center;
+}
+
+.nav table tr i a{
+	text-decoration:none;
+	font-size:20px;
+	color:#F7FDD4;
+}
+
+.nav table tr i a:hover{
+	color:#C5A465;
+}
+
+i.fas, i.fab{
+	color:#C5A465;/*icons*/		
+}
+
+/* home page */
+form input[placeholder]{	
+	text-align:center;
+}
+
+.container{				
+	background-color:#F7FDD4;
+	width:100%;
+	height:100%;
+	border-radius:5px;
+	border-style:ridge;
+	border-color:#C5A465;
+	border-width:1px;	
+}
+
+.box_filters{	
+	float: right;
+	padding-right:20px;	
+	margin-bottom:20px;/*venueprofiles too!*/
+}
+
+.box_session{
+	clear:right;	
+	float:right;
+	width:100%;
+	height:50px;
+	text-align:right;	
+	margin-right:10px;
+	color:#1E2C22;
+	text-shadow:1px 1px azure;
+}
+
+.box_session ul{
+	margin-right: 15px;
+}
+
+.box_session ul li{
+	display:inline-block;
+	padding:5px;	
+}
+
+.db_tables td,th{	
+	border:2px solid #1E2C22;
+	text-align:center;
+	vertical-align:center;
+	padding:5px;
+	/* border-radius:5px; */
+}
+.db_tables th{
+	background-color:#1E2C22;
+	color:azure;
+}
+
+.db_tables td{
+	background-color: azure;
+}
+
+.box_free_venues, .box_booked_venues, .box_release_form, .box_booking{
+	margin-left:20px;
+}
+
+/*venue profiles layout*/
+.profile_container{
+	margin-top:50px;	
+	display:flex;
+	width:99%;
+	margin-left:3px;
+	margin-right:3px;
+	flex-flow:row wrap;
+	justify-content: space-around;
+	align-items:baseline;
+
+}
+
+.profile_box{	
+	text-align:center;	
+	padding:2px;
+	flex:1 1 150px;	
+}
+
+.profile_box p{
+	font-size:16px;
+	font-family: 'Courier New', Courier, monospace;
+	color:#1E2C22;
+	text-align:center;	
+}
+
+/*contactus layout*/
+#contactus_container{
+	display:flex;
+	flex-flow:column wrap;
+	justify-content: center;
+	align-content:center;
+	flex-flow:column wrap;
+	background-color:#F7FDD4;
+}
+
+.contactus_header{
+	text-align: center;
+	flex:1 1 auto;	
+	margin-bottom:30px;
+	margin-top:10px;
+}
+
+.contactus_header p{
+	font-size:20px;
+	font-family: 'Courier New', Courier, monospace;
+	color:#1E2C22;
+}
+
+.contactus_form{
+	flex:1 1 auto;	
+	margin-bottom:30px;	
+}
+
+.contactus_form input{
+	background-color:inherit;
+	border-width:0 0 1px 0;
+	width:100%;
+	height:40px;
+	border-bottom-color:#1E2C22;
+}
+
+.contactus_feedback{
+	flex:1 1 auto;	
+	text-align:center;
+	color:rgb(255, 0, 119);
+}
+
+.contactus_feedback table{
+	width:100%;
+	color:#1E2C22;
+}
+
+.contactus_feedback h3{
+	font-family:"Courier New", monospace;
+}
+
+#feedback_header_row{
+	text-decoration:underline;
+	color:rgb(255, 0, 119);
+	font-size:18px;
+}
+
+#message{
+	background-color:inherit;
+	border-bottom-color:#1E2C22;
+	border-radius:5px;
+	margin-top:5px;
+	border-width:0 0 1px 0;
+	text-align:center;
+	padding-top:3px;
+}
+
+#send{
+	border:2px solid white;
+	background-color:#1E2C22;
+	color:#F7FDD4;
+	width:50%;
+	margin:10px 0 0 24%;
+	border-radius:5px;
+}
+
+/*credits page*/
+/* p{
+	font-size:20px;
+	font-family: 'Courier New', Courier, monospace;
+	color:#1E2C22;
+	text-align:center;
+} */
+
+
+
+
+
+
+
