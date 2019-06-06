@@ -1,0 +1,389 @@
+INTERNATIONAL STANDARDS ORGANIZATION (ISO) 7-LAYER MODEL
+
+	INTRODUCTION
+
+Network industry uses two types of standards:
+	de facto standards 
+	de jure standards
+
+	1. de facto standards
+
+proprietary
+arises through commercial and educational uses.
+The standards remain unpublished and unavailable to outside vendors.
+
+	2. de jure standards
+
+non-proprietary
+No single company creates or owns them.
+Developed with the intent of enhancing connectivity and interoperability.
+Specifications are made public.
+
+Development and implementation of de jure standards are regulated by standards organization.
+
+OSI(Open Systems Interconnection) model: Communication standard through which computer networks will be designed.
+
+Is an accepted framework for analyzing and developing networking components and functionality.
+
+	Rules of the communication process
+
+Procedures governed by network standards:
+1. Procedures used to communicate the est and ending of communication.
+2. Signals used to represent data on the transmission media.
+3. Types of signals to be used.
+4. Access methods for relaying a signal across the media.
+5. Methods used to direct a message to the intended destination
+6. Procedures used to control the rate of data flow.
+7. Methods used to enable different computer types to communicate
+8. Ways to ensure that messages are received correctly.
+
+	THE OSI REFERENCE MODEL
+
+Provides useful structure for defining and describing the various processes underlying networking communications.
+Is a blueprint for vendors to follow when developing implementations.
+
+		Application
+		Presentation
+		Session
+		Transport
+		Network
+		Data Link
+		Physical
+
+Headers are added to info sent between the layers.
+In the receiver, the headers are removed(stripped) by the receiving computer after info in header has been utilized.
+headers are removed in the reverse order in which they were added.
+
+Information between computers is passed vertically.
+It is also horizontal in that one computer talks to its respective layer in the other computer.
+
+	PHYSICAL LAYER CONCEPTS
+
+Concerned with all aspects of transmiting and receiving data on the network media.
+Transmitting and receiving bits.
+
+Defines key x-tics of the physical network:
+	Physical structure of the network (physical topology)
+	Mechanical and electrical specifications for using the medium
+	Bit transmission, encoding, timing
+
+
+These specifications differ depending on the physical medium.
+
+	COMPONENTS:
+
+Repeaters: repeats a signal from one port onto other ports to which it is connected.
+Used to extend the distance between the network stations.
+
+
+	DATA LINK LAYER CONCEPTS
+
+Receives messages, called frames from upper layers.
+It disassembles frames into bits for transmission.
+It also reconstructs frames from bits received.
+
+Other fns:
+-error control
+-flow control
+
+IEEE 802 standard divides the Data Link layer into two sublayers:
+	-Media Access Control(MAC) Controls how data is transferred from a device to transmission medium. Also provides addressing information for communication btn network devices.
+	-Logical Link Control(LLC) establishes and maintains links btn communicating devices.
+
+Flow control: Determines the amount of data that can be transmitted in a given time.
+Error control: Detects errors in received frames and requests retransmission of frames.
+
+	COMPONENTS:
+
+Bridges:
+Datalink layer enables a bridge to pass a frame in the direction of its destination without simultaneously forwarding it to segments for which it was not intended.
+Filtering reduces traffic.
+
+
+	NETWORK LAYER CONCEPTS
+
+Handles communication with devices on logically separate networks that are connected to form internetworks.
+Utilizes routing algorithms that guide packets from their source to their destination networks.
+Each network is assigned a network address used to router packets.
+Network layer manages the process of addressing and delivering packets on internetworks.
+
+It oversees the process of determining paths and delivering packets across the internetwork.
+
+Switching techniques are mechanisms for moving data from one network segment to another.
+
+	SWITCHING TECHNIQUES::
+
+1. Circuit switching
+2. Message switching
+3. Packet switching
+
+
+	Circuit switching
+
+Establishes a path that remains fixed for the duration of a connection.
+Provides devices with a dedicated path and a well defined bandwidth.
+
+DISADVANTAGES
+
+Establishing a connection between the devices can be time consuming.
+Other traffic cannot share the dedicated media path, bandwidth may be used inefficiently.
+Must have surplus of bandwidths hence expensive to contruct.
+
+	Message switching
+
+Treats each message as an independent entity.
+Each message carries address information that describes the message's destination, this info is used at each switch to transfer the message to the next switch in the route.
+Message switching transfers the complete message from one switch to another, where the message is stored before it is forwarded again( store and forward network)
+The switches are general purpose computers with sufficient storage and RAM.
+
+ADVANTAGES
+
+Data channels are shared between communicating devices, hence efficiency in bandwidth utilization.
+Stores messages until a channel becomes available, reducing sensitivity to network congestion.
+Message priorities can be used to manage network traffic.
+Broadcast addressing uses network bandwidth more efficiently by delivering messages to multiple destinations.
+
+DISADVANTAGE
+
+Not suited for real-time applications, including data communication, video, and audio.
+
+
+	Packet switching
+
+Messages are divided into smaller pieces called packets.
+Each packet includes source and destination address information so that individual packets can be routed through the internetwork independently.
+Looks like message switching but packets are restricted to a size that enables the switching devices to manage packet data entirely in memory. This eliminates the need for switching devices to store the data temporarily in disk.
+Hence routes packets more rapidly and efficiently than message switching.
+
+	Methods of packet switching:
+	-Datagram
+	-Virtual circuit
+
+
+	Virtual Circuit Packet Switching
+
+A formal connection is established between two devices.
+The devices negotiate communication parameters:
+  -max message size
+  -communication windows
+  -network paths
+
+The negotiation establishes a virtual circuit, which is a well-defined path through the internetwork by which devices communicate.
+The virtual circuit remains until devices stop communicating.
+
+	ADVANTAGES OF PACKET SWITCHING
+
+Optimizes use of bandwidth; same network channel is used by multiple devices. The router adjusts routes for maximum efficiency.
+
+Entire messages are not stored in switches prior to forwarding, hence transmission delays are shorter.
+
+	DISADVANTAGES
+
+Needs significant amount of real-time memory.
+Switching devices must have sufficient processing power to run more complex routing protocols.
+A system must be in place in which devices can recognize when packets have been lost so that retransmission can be requested.
+
+
+	CONNECTION-ORIENTED AND CONNECTIONLESS MODES
+
+Complexity and versatility of Network layer gives rise to two communication modes:
+
+	-Connection-oriented mode
+	-Connectionless mode
+
+Connection-oriented mode: Error correction and flow control are provided at internal nodes along the message path.
+
+Connectionless mode: Internal nodes along the path do not participate in error correction and flow control.
+
+	ADVANTAGE OF CONNECTIONLESS MODE
+
+Communication can be processed more quickly and simply; internal nodes just foward data.
+
+	DISADVANTAGES
+
+Messages may get lost due to overflowing buffer:
+
+If a message get's lost, the sender doesn't receive notification.
+Retransmission for error correction takes longer because a faulty transmission can't be corrected across an internal link.
+
+	GATEWAY SERVICES
+
+Routers can handle interconnection of networks whose protocols function in similar ways.
+
+When the rules differ a gateway is required.
+Gateway: is device that can translate different protocols used by different networks.
+
+brouter: is adevice that combines some xtics of a router and a bridge.
+It acts as a router for routerable protocols and acts as a bridge for nonroutable protocols.
+
+
+	TRANSPORT LAYER CONCEPTS
+
+Implement's procedures to ensure reliable delivery of messages to their destination devices.
+
+"reliable" does not mean that errors cannot occur ; it means that if errors occur, they are detected.
+
+it either requests retransmission or notifies upper-layer protocols so that they can take corrective action.
+Transport layer breaks large messages into segments suitable for network delivery.
+
+	Transport Layer Connection Services
+
+Transport layer interacts with the Network layer's connection-oriented and connectionless services and provides some of the essential quality control features.
+
+	Transport Layer activities:
+
+Repackaging: Repackages the segments when received b4 reassembling the original message.
+
+Error control: When segments are lost, when they have duplicate segment IDs, error recovery will be initiated.
+Also detectes corrupted segments using checksums.
+
+End-to-end flow control: uses acknowledgments to manage end-to-end flow. They can also request retransmission of the most recent segments.
+
+
+	SESSION LAYER CONCEPTS
+
+Manages dialogs between two computers by establishing, managing and terminating communications.
+Dialogs takes 3 forms:
+
+1. Simplex dialogs:
+
+Responsible for one-way data transfers only.
+
+2. Half-duplex dialogs:
+
+Handles two data transfers in which data only flows in one direction at a time.
+
+3. Full-duplex dialogs:
+
+Permits two-way simultaneous data transfers; each device is provided with a separate communication channel.
+
+	Session Layer Session Administration
+
+A session is a formal dialog between a service requester and a service provider.
+
+Sessions have four phases:
+
+	1.Connection establishment:
+Service requester requests initiation of a service.Communication is established and rules agreed upon.
+
+	2.Data transfer:
+With all the rules agreed upon, each party knows what to expect. Communicatin is therefore efficient and errors are easy to detect.
+
+	3.Connection release:
+When session is completed, the dialog is terminated in an orderly fashion.
+
+	4.Error correction:
+Done at the session layer. Checks for errors in the reassembled packets received from the Transport layer.
+
+Connection establishment phase is comprised of several tasks:
+
+1. Specification of required services to be used.
+2. User login authentication and other security procedures
+3. Negotitation of protocols and protocol parameters.
+4. Notification of connection IDs.
+5. Establishment of dialog control, acknowledgement of numbering and retransmission procedures.
+
+The session layer also incoporotes protocols to resume dialogs that have been interrupted.
+
+
+	PRESENTATION LAYER CONCEPTS
+
+Formats the data to be presented to the application layer.
+Is a translator of the network.
+Translates data from a format used by application layer into a common format at the sending station, then translates the common format to a format known to the application layer at the receving station.
+
+It provides:
+
+1. Character code translation e.g., ASCII to EBCDIC
+2. Data conversion: bit order, integer-floating point etc.
+3. Data compression: reduces number of bits that need to be transmitted on the network.
+4. Data encryption: encrypt data for security purposes. e.g., password encryption.
+
+
+On the receiving end, Presentation layer converts machine independent data from the network into the format required for the local system.
+Conversion includes:
+
+	1. Bit order translation
+Binary numbers transmitted through a network are sent one bit at a time.
+Transmitting computer can either start at MSD or LSD.
+This has to do with whether the information read is from right to left or from left to right.
+
+	2. Byte-order translation
+Needed to reconcile differences when transferring data between a computer with Intel processor (begins transmission with least significant byte; "little endian) and Motorola (begins with most significant byte; "big endian")
+
+	3. Character code translation
+
+	4. File syntax translation
+File formats are different between computers.
+
+	5. Encryption
+Puts data into a form unreadable by unauthorized users.
+Takes on two main forms:
+	-Public key
+	Uses a rule of encryption(the key) and a known value.
+	Manipulation of the key with a known value produces a mechanism for decrypting data.
+
+	-Private key
+	Uses one key. All component that have the key can decrypt the data.
+
+
+	APPLICATION LAYER CONCEPTS
+
+Concerned with providing services on the network including file sevices, print services, application services such as database services, messaging services and directory services among others.
+
+Provides an interface whereby application can communicate with the network.
+
+It is the interface that is often referred to as the Application Programming Interface(API).
+
+It also advertises the available services your computer has to the network.
+
+It serves as a window for users and application processes to access network services
+
+	Commonly needed functions:
+
+1. Resource sharing and device redirection
+2. Remote file access
+3. Remote printer access
+4. Inter-process communication
+5. Network management
+6. Directory services
+7. Electronic messaging (such as mail)
+8. Network virtual terminals
+
+
+	Ethernet
+
+Is a computer networking technology for LANs.
+Has wiring and signaling variants
+Wiring variants:
+	-coaxial cable
+	-twisted pair
+	-fiber optic
+
+Signaling variants:
+	-10BASE-T  (10Mbit/s)
+	-100BASE-TX(100Mbit/s)
+	-1000BASE-T(1Gbit/s)
+
+The 3 above utilizes twisted pair cables.
+
+Fibre optic offers high performance, electrical isolation and distance.
+
+
+	Token ring
+
+Is a protocol residing in the data link layer.
+Uses a 3-byte frame called a token ring that travels around the ring.
+
+	Data transmission process:
+1. Empty info frames are continuosly circulated on the ring.
+2. When a computer has a message to send, it seizes the token. The computer will then send the frame.
+3. The frame is examined by each successive workstation. A workstation identifies itself to be the destination; copies the message from the frame and changes the token back to zero.
+4. The token goes back to the originator; it sees that it has changed to 0 and what message has been copied and received. It removes the message from the frame.
+5. The frame continues to circulate as an empty frame, ready to be taken by a workstation when it has a message to send.
+
+	
+	Fiber Distributed Data Interface (FDDI)
+
+Is a standard for data transmission in LAN.
+Uses optical fibre as its standard underlying physical medium.

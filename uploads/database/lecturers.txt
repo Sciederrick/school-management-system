@@ -1,0 +1,5 @@
+CS111	Ernest Kiprop	+254711111111	ernestkiprop@gmail.com	kiprop1234	COM326
+PY222	Ngetich Wesley	+254716044500	ngetichwesley@gmail.com	wesley1234	PHY316,PHY110
+MT333	Korkoren	+254702115965	korkoren@gmail.com	korkoren1234	MAT427,MAT420
+IT444	Shadrack Meto	+254721799430	shadrackmeto@gmail.com	shadrack1234	COM223,COM323
+ZO555	Lydia Nyamwamu	+254732342389	lydianyamwamu@gmail.com	lydia1234	ZOO314,ZOO410
