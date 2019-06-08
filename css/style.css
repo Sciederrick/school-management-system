@@ -2,7 +2,7 @@ body{
     padding:0;
 	margin:0;
 	font-family:cursive;
-	background-color:#1E2C22;
+	background-color:#1E2C22;	
 }
 #copyright{
 	position:absolute;
@@ -61,33 +61,27 @@ body{
 }
 
 /*index page layout*/
-
 .header{
-	position:fixed;
-	top:0;
+	width:100%;
+	height:100px;
+	margin:0;
+	padding-top:30px;
+	background-image:url(../img/image1.png);
+}
+.nav{
+	position:absolute;	
 	left:0;
 	width:100%;
-	height:75px;
-	padding:20px;
-	background:url('../img/image1.png');	
-}
-
-.nav{
-	position: fixed;
-	top:115px;
-	left:0;
-	width: 27%;
 	height:100%;
-	padding-top:8%;
-	background-color:#1E2C22;
+	background-color:#1E2C22;	
 }
 
 .main{
-	position:relative;
-	top: 113px;
-	left:350px;
-	width: 93%;
-	height: 100%;
+	position:absolute;	
+	left:0;
+	width:100%;
+	height:100%;
+	background-color:#F7FDD4;
 }
 
 .header h1{
@@ -100,7 +94,8 @@ body{
 
 .nav table{
 	width:98%;
-	height:50%;
+	height:50%;	
+	margin-top:5%;	
 }
 
 .nav table tr{
@@ -125,49 +120,36 @@ i.fas, i.fab{
 form input[placeholder]{	
 	text-align:center;
 }
-
-.container{				
-	background-color:#F7FDD4;
-	width:100%;
-	height:100%;
-	border-radius:5px;
-	border-style:ridge;
-	border-color:#C5A465;
-	border-width:1px;	
+.container{			
+	display:flex;
+	flex-flow:column wrap;
+	justify-content: center;
+	align-content:center;	
 }
-
-.box_filters{	
-	float: right;
-	padding-right:20px;	
-	margin-bottom:20px;/*venueprofiles too!*/
-}
-
-.box_session{
-	clear:right;	
-	float:right;
-	width:100%;
-	height:50px;
-	text-align:right;	
-	margin-right:10px;
+.box_session_filter {
+	width:99%;	
+	height:15%;
+	margin-bottom:0px;
+	text-align:right;
 	color:#1E2C22;
-	text-shadow:1px 1px azure;
+	text-shadow:1px 1px azure;	
+	padding-right:50px;
+	padding-bottom:5px;	
 }
-
-.box_session ul{
-	margin-right: 15px;
+.box_session_filter form{
+	float:right;
 }
-
-.box_session ul li{
+.box_session_filter ul li{
 	display:inline-block;
-	padding:5px;	
+	padding:5px;
+	list-style-type: none;
+	
 }
-
 .db_tables td,th{	
 	border:2px solid #1E2C22;
 	text-align:center;
 	vertical-align:center;
 	padding:5px;
-	/* border-radius:5px; */
 }
 .db_tables th{
 	background-color:#1E2C22;
@@ -213,8 +195,7 @@ form input[placeholder]{
 	display:flex;
 	flex-flow:column wrap;
 	justify-content: center;
-	align-content:center;
-	flex-flow:column wrap;
+	align-content:center;	
 	background-color:#F7FDD4;
 }
 

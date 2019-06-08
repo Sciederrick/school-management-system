@@ -10,16 +10,20 @@
 	<div class="header">
 		<h1>Moi University Venue System</h1>
 	</div>
-	<div class="nav">		
+	<div class="nav">
+	<!--sidebar-->	
+		<button id="sidebar_close">Close &times;</button>
 		<table>		
 			<tr><td><i class="fas fa-home">&nbsp;&nbsp;<a href="index">Home</a></i></td></tr>		
-			<tr><td><i class="fas fa-university">&nbsp;&nbsp;<a href="index?p=venueprofiles">Venues</a></td></tr>			
+			<tr><td><i class="fas fa-university">&nbsp;&nbsp;<a href="index?p=venueprofiles">Venues</a></i></td></tr>			
 			<tr><td><i class="fas fa-phone">&nbsp;&nbsp;<a href="index?p=contactus">Contact&nbsp;Us</a></i></td></tr>
 			<tr><td><i class="fas fa-code">&nbsp;&nbsp;<a href="index?p=credits">Credits</a></i></td></tr>		
 			<tr><td><i class="fas fa-lock-open">&nbsp;&nbsp;<a href="../login.html">Login</a></i></td></tr>	
-</table>		
+		</table>		
 	</div>
 	<div class="main">
+	<!--Page Content-->		
+		<button id="sidebar_open">&#9776;</button>
 		<?php
 
 					$dir="pages";
@@ -42,4 +46,6 @@
 		?>
 	</div>	
 </body>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script src="../js/sidemenu_effects.js"></script>
 </html>

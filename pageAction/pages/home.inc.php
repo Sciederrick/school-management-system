@@ -12,9 +12,8 @@ $reg_no=$_SESSION['reg_no'];
 	<head>  
     <link href="../../css/style.css" rel="stylesheet" type="text/css"/>      					   
  	</head>
-	<body>  
-    <div class="container"> 
-    <div class="box_session">
+	<body>      
+    <div class="box_session_filter">
         <ul>
           <li>            
             <?php
@@ -32,9 +31,7 @@ $reg_no=$_SESSION['reg_no'];
               echo date("h:i:sa");
             ?>            
           </li>
-        </ul>              
-      </div>  		   		            
-      <div class="box_filters">  
+        </ul>     
         <!-- Form for school and day filters -->
         <form action="" method="GET" id="menu_options">
           <table> 
@@ -66,9 +63,9 @@ $reg_no=$_SESSION['reg_no'];
               <td colspan='2'><input type="submit" value="Go"></td>
             </tr>
           </table>
-        </form> 
-          
-	    </div>     
+        </form>           
+      </div> 
+      <div class="container">     
       <div class="box_free_venues">
         <?php                
           $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');                                   
