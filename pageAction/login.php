@@ -23,7 +23,7 @@ function get_post($var){
 				
 			   $connect=mysqli_connect("localhost","root","derrick8","school_venue_management_system");
 			   $result=array(array());
-			   $result=mysqli_fetch_assoc(mysqli_query($connect,"SELECT name, cohort FROM classrep WHERE (reg_no='".$reg_no."') AND password='".$password."'"));
+			   $result=mysqli_fetch_assoc(mysqli_query($connect,"SELECT name, cohort FROM classrep WHERE reg_no='".$reg_no."' AND password='".$password."' AND active='1'"));
 			   
 			 		if($result['name']==true && $result['cohort']<>'admin'){
 						header("Location:index.php");

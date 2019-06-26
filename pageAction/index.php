@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-	<title>School Venue Management System</title>
+	<title>SVMS</title>
 	<link href="../../css/all.css" rel="stylesheet" type="text/css"/>
-	<link href="../css/style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-	<div class="header">
-		<h1>Moi University Venue System</h1>
-	</div>
-	<div class="nav">
-	<!--sidebar-->	
-		<button id="sidebar_close">Close &times;</button>
-		<table>		
-			<tr><td><i class="fas fa-home">&nbsp;&nbsp;<a href="index">Home</a></i></td></tr>		
-			<tr><td><i class="fas fa-university">&nbsp;&nbsp;<a href="index?p=venueprofiles">Venues</a></i></td></tr>			
-			<tr><td><i class="fas fa-phone">&nbsp;&nbsp;<a href="index?p=contactus">Contact&nbsp;Us</a></i></td></tr>
-			<tr><td><i class="fas fa-code">&nbsp;&nbsp;<a href="index?p=credits">Credits</a></i></td></tr>		
-			<tr><td><i class="fas fa-lock-open">&nbsp;&nbsp;<a href="../login.html">Login</a></i></td></tr>	
-		</table>		
-	</div>
+<body style="background-image:url(../img/dust_scratches.png)">
+<div class="container-fluid">
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">	
+		<!--Brand-->
+		<a class="navbar-brand" href="https://www.mu.ac.ke/index.php/en/">
+			<img src="../img/mulogo.png" alt="Logo" style="width:40px;">
+		</a>
+		<!--Toggler/collapsible Button-->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!--Navbar links-->
+		<div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+			<ul class="navbar-nav">		
+			<span class="navbar-text d-none d-md-block"><i class="fas fa-home"></i></span>
+			<li class="nav-item"><a class="nav-link" href="index">Home</a></li>	
+			<span class="navbar-text pl-4 d-none d-md-block"><i class="fas fa-university"></i></span>
+			<li class="nav-item"><a class="nav-link" href="index?p=contactus">Contact&nbsp;Us</a></li>
+			<span class="navbar-text pl-4 d-none d-md-block"><i class="fas fa-lock-open"></i></span>
+			<li class="nav-item"><a class="nav-link" href="../login.html">Login</a></li>	
+			</ul>
+		</div>
+	</nav>		
 	<div class="main">
 	<!--Page Content-->		
-		<button id="sidebar_open">&#9776;</button>
 		<?php
 
 					$dir="pages";
@@ -45,7 +55,6 @@
 			
 		?>
 	</div>	
+</div>
 </body>
-<script src="../js/jquery-3.4.1.min.js"></script>
-<script src="../js/sidemenu_effects.js"></script>
 </html>

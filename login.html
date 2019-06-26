@@ -1,49 +1,43 @@
 <!DOCTYPE html>
-<html lang='en'>
-	<head>
-		<title>Venue_Management_System|Login</title>
-		<link href="css/style.css" rel="stylesheet"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	</head>
-	<body>
-		<div id="login_container">
-			<div class="login_form">
-				<form action="pageAction/login.php" method="POST" name="form"  id="login_form" onsubmit="return validate();">	
-					<figure>
-						<img src="img/logo.png" id="mulogo">
-					</figure>			
-							<table>
-								<tr>
-									<td>
-									<input type="text" name="reg_no" placeholder="registration number" id="reg_no" required="required">
-									</td>
-								</tr>
-								<tr>
-									<td>
-									<input type="password" name="password" placeholder="password" id="password" required="required">
-									</td>
-								</tr>
-								<tr>
-									<td>
-									<p style="text-align:center"><a href="registration.html">Register</a></p>
-									</td>
-								</tr>
-								<tr>
-									<td>
-									<input type="submit" value="login" id="submit">
-									</td>
-								</tr>
-							</table>				
-					</form>
+<html lang="en">
+<head>
+	<title>SVMS|Login</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<!-- <link type="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<script src="jquery/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script> -->
+</head>
+<body style="background-image:url(./img/dust_scratches.png)">
+<div class="container-fluid">	
+	<div class="row">	
+		<div class="col-md-5">
+			<img class="img-fluid mx-auto d-none d-md-block" src="img/matt-flores-1620018-unsplash.jpg" height="100%" width="100%" class="rounded">
+		</div>
+		<div class="col-md-7 d-flex flex-wrap flex-column h-100 align-content-center justify-content-center">	
+			<div class="pt-5">
+			<form action="pageAction/login.php" method="POST" name="form"  id="login_form" onsubmit="return validate();">		
+				<div class="form-group">			
+				<label class="form-check-label" for="reg_no">REGISTRATION NUMBER:</label>					
+				<input type="text" class="form-control" name="reg_no"  placeholder="registration number" id="reg_no" required>	
 				</div>
-			</div>
-			<div id="copyright">
-				<p>
-				&copy;&nbsp;2019&nbsp;MOI&nbsp;University.All&nbsp;rights&nbsp;reserved.
-				</p>
-			</div>
-		
-		<script src="js/login_validation.js"></script>	
-		<noscript>Javascript in your browser has been disabled!</noscript>
-	</body>
+				<div class="form-group">
+				<label class="form-check-label" for="password">PASSWORD:</label>
+				<input type="password" class="form-control" name="password" placeholder="password" id="password" required>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
+				<p class="text-center text-uppercase pt-4"><a class="text-decoration-none" href="pageAction/registration.php">Register</a></p>							
+			</form>	
+			<p class="fixed-bottom text-right pt-3">&copy;&nbsp;2019&nbsp;MOI&nbsp;University.All&nbsp;rights&nbsp;reserved.</p>
+			</div>	
+		</div>	
+	</div>	
+</div>
+<script src="js/login_validation.js"></script>	
+<noscript>Javascript in your browser has been disabled!</noscript>
+</body>
 </html>

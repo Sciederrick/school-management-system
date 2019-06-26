@@ -1,9 +1,64 @@
-<?php
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<title>Venue_Management_System|Registration</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background-image:url(./img/dust_scratches.png)">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-5">
+			<img class="img-fluid mx-auto d-none d-md-block" src="../img/matt-flores-1620018-unsplash.jpg" height="100%" width="100%" class="rounded">
+		</div>
+		<div class="col-md-7 pt-5 d-flex flex-wrap flex-column h-100 align-content-center justify-content-center">
+		<form class="w-75 py-2 px-3 mx-auto bg-light" action="" method="POST"  name="form" id="regForm" onsubmit="return validate();" enctype="multipart/form-data">
+			<div class="form-group mb-3">
+				<label class="form-check-label" for="name">Name:</label>
+				<input class="form-control" type="text" name="name" id="name" required="required" placeholder="name">
+			</div>
+			<div class="form-group mb-3">
+				<label class="form-check-label" for="phone_number">Tel:</label>
+				<input class="form-control" type="tel" id="phone_number" name="phone_number" max="13" required="required" placeholder="phone_number">
+			</div>
+			<div class="form-group mb-3">
+				<label class="form-check-label" for="email">Email:</label>
+				<input class="form-control" type="email" id="email" name="email" max="20" required="required" placeholder="email">
+			</div>
+			<div class="form-group mb-3">
+				<label class="form-check-label" for="reg_no">Reg_no:</label>
+				<input class="form-control" type="text" id="reg_no" name="reg_no" required="required" placeholder="reg_no">
+			</div>
+			<div class="form-group mb-3">
+				<label class="form-check-label" for="cohort">Cohort:</label>
+				<input class="form-control" type="text" id="cohort" name="cohort"  required="required" placeholder="cohort">
+			</div>
+			<div class="form-group mb-3">
+				<label class="form-check-label" for="password">Password:</label>
+				<input class="form-control" type="password" id="password" name="password" min="8" required="required" placeholder="password">
+			</div>
+			<div class="form-group mb-3">
+				<button class="btn btn-primary" type="submit">Register</button>
+			</div>		
+		</form>		
+		<p class="fixed-bottom text-right pt-3">&copy;&nbsp;2019&nbsp;MOI&nbsp;University.All&nbsp;rights&nbsp;reserved.</p>
+		</div>
+	</div>
+</div>
+<script src="js/registration_validation.js"></script>
+<noscript>Javascript is disabled in your browser!</noscript>
+</body>
+</html>
+<!-- 
+	Registration Logic
+ -->
+ <?php
 
 $name=$reg_no=$email=$cohort=$phone_number=$password="";
-
-/*$photo_file_name=$_FILES['photoupload'];
-$cv_file_name=$_FILES['cvupload'];*/
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
@@ -23,89 +78,6 @@ function get_post($var){
 		return $sanitized;
 	}	
 
-
-//file data
-/*$target_dir="../uploads/images/";
-$target_dir2="../uploads/cv/";
-
-
-$image_extensions=array('jpg','jpeg','png','jpe');
-$errors=array();
-$exploded_image_name=explode('.',$_FILES['photoupload']['name']);
-$exploded_image_name_ext=end($exploded_image_name);
-$file_ext=strtolower($exploded_image_name_ext);
-
-$image_ext_ok=0;
-
-$cv_extensions=array('pdf','docx','doc','txt');
-$cv_errors=array();
-$exploded_cv_name=explode('.',$_FILES['cvupload']['name']);
-$exploded_cv_name_ext=end($exploded_cv_name);
-$cv_ext=strtolower($exploded_cv_name_ext);
-$cv_ext_ok=0;*/
-
-
-	/*if(isset($photo_file_name)){
-			if($_FILES["photoupload"]["size"]>200000000){
-				$errors[]="File too large.";
-			}
-				for($i=0; $i<sizeof($image_extensions); $i++){
-					if($file_ext===$image_extensions[$i]){
-							$image_ext_ok=1;
-					}
-				}
-			if($image_ext_ok<>1){
-				$errors[]="Not an image file.";				
-			}
-			
-			if(empty($errors)==true){
-				
-				move_uploaded_file($_FILES["photoupload"]["tmp_name"],$target_dir.$_FILES["photoupload"]["name"]);
-					$image_path_name=$_FILES["photoupload"]["name"];
-			}
-			else{
-				$str_errors=implode(".",$errors);
-				exit($str_errors);
-					
-			}
-			
-					
-					
-	}*/
-	//image upload validation
-	
-	
-	
-	/*
-		if(isset($cv_file_name)){
-			if($_FILES["cvupload"]["size"]>200000){
-				$errors[]="File too large";
-			}
-				for($i=0; $i<sizeof($cv_extensions); $i++){
-					if($cv_ext===$cv_extensions[$i]){
-							$cv_ext_ok=1;
-					}
-				}
-			if($cv_ext_ok<>1){
-				$cv_errors[]="Not a text file docx, doc, pdf";				
-			}
-			
-			if(empty($cv_errors)==true){
-				
-				move_uploaded_file($_FILES["cvupload"]["tmp_name"],$target_dir2.$_FILES["cvupload"]["name"]);	
-					$cv_path_name=$_FILES["cvupload"]["name"];
-			}
-			else{
-				$str_errors_2=implode(".",$cv_errors);
-				exit($str_errors_2);				
-			}
-					
-					
-	}*/
-	//cv upload validation
-	
-
-
 	if(isset($name)&&isset($reg_no)&&isset($email)&&isset($cohort)&&isset($phone_number)&&isset($password))
 		{
 	
@@ -113,13 +85,17 @@ $cv_ext_ok=0;*/
 
 					$connect=mysqli_connect("localhost","root","derrick8","school_venue_management_system");
 					
-					$result=mysqli_query($connect,"INSERT INTO classrep VALUES('$reg_no','$cohort','$name','$email','$phone_number','$password')");
+					$result=mysqli_query($connect,"INSERT INTO classrep (reg_no,cohort, name, email, phone_number, password) VALUES('$reg_no','$cohort','$name','$email','$phone_number','$password')");
 					
 						if($result==true){
-							header("Location:index.php");							
+							?>
+							<script>alert("Registration Successful!\nPlease wait for activation of your account after 24 hours")</script>						
+							<?php
 						}
 						else{
-							echo 'Registration failed';							
+							?>
+							<script>alert("Registration Failed")</script>						
+							<?php						
 						}
 						
 						mysqli_close($connect);	
@@ -133,3 +109,5 @@ $cv_ext_ok=0;*/
 	
 
 ?>
+
+

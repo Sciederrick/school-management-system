@@ -1,0 +1,19 @@
+The user should be able to check the status of the venues(free or booked).
+Book the available venues.
+Check the time limit for the current free status.
+See who is occupying the desired venues.
+The system should work as per the timetable.
+See the status of the lectures.
+
+
+
+program requirements:
+An array to store the venues.
+An array to store the classes/courses.
+An array to store the days.
+An array to store the year and semester.
+
+**Check's first with the timetable.
+**Based on the status, allow booking.
+**Timelines???
+

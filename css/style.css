@@ -1,15 +1,15 @@
-body{
+/* body{
     padding:0;
 	margin:0;
 	font-family:cursive;
 	background-color:#1E2C22;	
-}
-#copyright{
+} */
+/* #copyright{
 	position:absolute;
 	bottom:0%;
 	right:0%;
 	visibility:hidden;
-}
+} */
 
 /*Login page*/
  #login_container{
@@ -61,11 +61,11 @@ body{
 }
 
 /*index page layout*/
-.header{
+/* .header{
 	width:100%;
-	height:100px;
+	height:75px;
 	margin:0;
-	padding-top:30px;
+	padding-top:15px;
 	background-image:url(../img/image1.png);
 }
 .nav{
@@ -113,10 +113,13 @@ body{
 }
 
 i.fas, i.fab{
-	color:#C5A465;/*icons*/		
-}
+	color:#C5A465;	
+} */
 
 /* home page */
+body#home{
+	background-color:#F7FDD4;
+}
 form input[placeholder]{	
 	text-align:center;
 }
@@ -128,8 +131,8 @@ form input[placeholder]{
 }
 .box_session_filter {
 	width:99%;	
-	height:15%;
-	margin-bottom:0px;
+	height:10%;
+	margin-bottom:10px;
 	text-align:right;
 	color:#1E2C22;
 	text-shadow:1px 1px azure;	
@@ -141,7 +144,7 @@ form input[placeholder]{
 }
 .box_session_filter ul li{
 	display:inline-block;
-	padding:5px;
+	padding:2px;
 	list-style-type: none;
 	
 }
@@ -165,6 +168,15 @@ form input[placeholder]{
 }
 
 /*venue profiles layout*/
+/* body#venueprofiles{
+	background-color:#F7FDD4;
+}
+
+.box_filters form table{
+	text-align:right;
+	width:100%;	
+}
+
 .profile_container{
 	margin-top:50px;	
 	display:flex;
@@ -180,7 +192,7 @@ form input[placeholder]{
 .profile_box{	
 	text-align:center;	
 	padding:2px;
-	flex:1 1 150px;	
+	flex:1 1 150px;		
 }
 
 .profile_box p{
@@ -188,13 +200,13 @@ form input[placeholder]{
 	font-family: 'Courier New', Courier, monospace;
 	color:#1E2C22;
 	text-align:center;	
-}
+} */
 
 /*contactus layout*/
 #contactus_container{
 	display:flex;
 	flex-flow:column wrap;
-	justify-content: center;
+	justify-content:center;
 	align-content:center;	
 	background-color:#F7FDD4;
 }
@@ -215,7 +227,12 @@ form input[placeholder]{
 .contactus_form{
 	flex:1 1 auto;	
 	margin-bottom:30px;	
+	padding: 50px;	
+	display:flex;
+	justify-content:center;
+	align-content:center;
 }
+
 
 .contactus_form input{
 	background-color:inherit;
@@ -228,28 +245,38 @@ form input[placeholder]{
 .contactus_feedback{
 	flex:1 1 auto;	
 	text-align:center;
-	color:rgb(255, 0, 119);
+	color:#1E2C22;
 }
 
 .contactus_feedback table{
-	width:100%;
+	width:100%;	
+	text-align:center;
+	vertical-align:center;	
+	border-spacing:4px;	
+}
+
+.contactus_feedback table th{
+	background-color:#1E2C22;
+	color:azure;
+	font-size:18px;
+}
+
+.contactus_feedback td{
+	background-color: azure;
 	color:#1E2C22;
+	font-family:"Courier New", monospace;
+	font-size:0.9rem;
+	padding:5px;	
 }
 
 .contactus_feedback h3{
 	font-family:"Courier New", monospace;
 }
 
-#feedback_header_row{
-	text-decoration:underline;
-	color:rgb(255, 0, 119);
-	font-size:18px;
-}
-
 #message{
 	background-color:inherit;
 	border-bottom-color:#1E2C22;
-	border-radius:5px;
+	border-radius:0;
 	margin-top:5px;
 	border-width:0 0 1px 0;
 	text-align:center;

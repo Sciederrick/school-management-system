@@ -1,118 +1,158 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<link type="text/css" rel="stylesheet" href="../../../css/style.css">
-	</head>
-	<body>
-		<!-- Queries textarea		 -->
-		<div id="queries_text_area">
-			<form action='' method='POST'  id='queries'>			
-					<table>				
-					<tr>
-						<td>Queries:</td>
-						<td><textarea name='queries' rows='10' cols='50' placeholder='Run your database queries here...'></textarea></td>
-						<td></td>
-						<td><input type='submit' value='run'></td>
-					</tr>
-				</table>			
-			</form>
-			<form action='' method='POST'  id='timetable_record'>			
-					<table>				
-					<tr>
-						<td>Timetable:</td>
-						<td><select name='status' size='1'>
-							<option>booked</option>
-							<option>free</option>
-						</select></td>
-						<td><input type='text' name='venue_id' placeholder='venue_id' required='required'></td>
-						<td><select name='school' size='1'>
-							<option>medicine</option>
-							<option>law</option>
-							<option>engineering</option>
-							<option value='biological'>biological and physical sciences</option>
-							<option>business</option>
-							<option>education</option>
-							<option>arts</option>
-							<option>human resource</option>
-						</select></td>
-						<td><select name='day_of_week' size='1'>
-							<option>monday</option>
-							<option>tuesday</option>
-							<option>wednesday</option>
-							<option>thursday</option>
-							<option>friday</option>
-						</select></td>
-						<td><select name='duration' size='1'>
-							<option>07:00-09:00</option>
-							<option>09:00-11:00</option>
-							<option>11:00-13:00</option>
-							<option>13:00-15:00</option>
-							<option>15:00-17:00</option>
-							<option>17:00-19:00</option>
-						</select></td>
-						<td><input type='text' name='cohort' placeholder='cohort' required='required'></td>
-						<td><input type='text' name='course_code' placeholder='course_code' required='required'></td>
-						<td><input type='submit' value='+ record'></td>
-					</tr>
-				</table>			
-			</form>
-			<form action='' method='POST'  id='classrep_record'>			
-					<table>				
-					<tr>
-						<td>Classrep:</td>
-						<td><input type='text' name='reg_no' placeholder='reg_no' required='required'></td>
-						<td><input type='text' name='cohort' placeholder='cohort' required='required'></td>
-						<td><input type='text' name='name' placeholder='name' required='required'></td>
-						<td><input type='email' name='email' placeholder='janedoe@gmail.com' required='required'></td>
-						<td><input type='password' name='password' placeholder='password' required='required'></td>
-						<td><input type='submit' value='+ record'></td>
-					</tr>
-				</table>			
-			</form>
-			<form action='' method='POST'  id='cohort_record'>			
-					<table>				
-					<tr>
-						<td>Cohort:</td>
-						<td><input type='text' name='cohort' placeholder='cohort' required='required'></td>
-						<td><input type='text' name='reg_no' placeholder='reg_no' required='required'></td>
-						<td><input type='number' name='no_of_students' placeholder='no_of_students' min='1' max='500' required='required'></td>
-						<td><input type='text' name='courses_enrolled' placeholder='courses_enrolled' required='required'></td>
-						<td><input type='submit' value='+ record'></td>
-					</tr>
-				</table>			
-			</form>
-			<form action='' method='POST'  id='course_record'>			
-					<table>				
-					<tr>
-						<td>Course:</td>
-						<td><input type='text' name='cohort' placeholder='cohort' required='required'></td>
-						<td><input type='text' name='course_code' placeholder='course_code' required='required'></td>
-						<td><input type='text' name='course_title' placeholder='course_title' required='required'></td>
-						<td><input type='text' name='lecturers' placeholder='lecturers' required='required'></td>
-						<td><input type='text' name='department' placeholder='department' required='required'></td>
-						<td><input type='text' name='contact' placeholder='contact' required='required'></td>
-						<td><input type='submit' value='+ record'></td>
-					</tr>
-				</table>			
-			</form>
-			<form action='' method='POST'  id='venue_record'>			
-					<table>				
-					<tr>
-						<td>Venue:</td>
-						<td><input type='text' name='venue_id' placeholder='venue_id' required='required'></td>
-						<td><input type='text' name='building' placeholder='building' required='required'></td>
-						<td><input type='number' name='capacity' placeholder='capacity' min='15' max='1000'></td>
-						<td><input type='text' name='facilities' placeholder='facilities' required='required'></td>
-						<td><input type='submit' value='+ record'></td>
-					</tr>
-				</table>			
-			</form>
-		</div>		
-	</body>
+<html lang="en">
+<head>
+<title>Admin|database</title>	
+	<link href="../../../css/all.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="background-image:url(../../../img/doodles.png)">
+<div class="container my-5 py-3 bg-light">
+<h3><i class="fas fa-database"><span class="pl-2 font-weight-normal">Database</span></i></h3>
+<form action='' method='POST'  id='timetable_record'>			
+		<p class="pt-3 font-weight-bold">Timetable:</p>
+	<div class="form-group">
+		<select class="form-control form-control-sm" name='status' size='1'>
+			<option>booked</option>
+			<option>free</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='venue_id' placeholder='venue_id' required='required'>
+	</div>
+	<div class="form-group">
+		<select class="form-control form-control-sm" name='school' size='1'>
+			<option>medicine</option>
+			<option>law</option>
+			<option>engineering</option>
+			<option value='biological'>biological and physical sciences</option>
+			<option>business</option>
+			<option>education</option>
+			<option>arts</option>
+			<option>human resource</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<select class="form-control form-control-sm" name='day_of_week' size='1'>
+			<option>monday</option>
+			<option>tuesday</option>
+			<option>wednesday</option>
+			<option>thursday</option>
+			<option>friday</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<select class="form-control form-control-sm" name='duration' size='1'>
+			<option>07:00-09:00</option>
+			<option>09:00-11:00</option>
+			<option>11:00-13:00</option>
+			<option>13:00-15:00</option>
+			<option>15:00-17:00</option>
+			<option>17:00-19:00</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='cohort' placeholder='cohort' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='course_code' placeholder='course_code' required='required'>
+	</div>
+		<button class="btn btn-primary btn-sm" type='submit'><i class="fas fa-plus-square"><span class="pl-2">record</span></i></button>
+	
+</form>
+
+<form action='' method='POST'  id='classrep_record'>			
+		<p class="pt-3 font-weight-bold">	Classrep:</p>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='reg_no' placeholder='reg_no' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='cohort' placeholder='cohort' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='name' placeholder='name' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='email' name='email' placeholder='janedoe@gmail.com' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='password' name='password' placeholder='password' required='required'>
+	</div>
+		<button class="btn btn-primary btn-sm" type='submit'><i class="fas fa-user-plus"><span class="pl-2">record</span></i></button>
+</form>
+
+<form action='' method='POST'  id='cohort_record'>			
+		<p class="pt-3 font-weight-bold">	Cohort:</p>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='cohort' placeholder='cohort' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='reg_no' placeholder='reg_no' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='number' name='no_of_students' placeholder='no_of_students' min='1' max='500' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='courses_enrolled' placeholder='courses_enrolled' required='required'>
+	</div>
+			<button class="btn btn-sm btn-primary" type='submit'><i class="fas fa-plus-square"><span class="pl-2">record</span></i></button>
+</form>
+
+<form action='' method='POST'  id='course_record'>			
+		<p class="pt-3 font-weight-bold">	Course:</p>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='cohort' placeholder='cohort' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='course_code' placeholder='course_code' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='course_title' placeholder='course_title' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='lecturers' placeholder='lecturers' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='department' placeholder='department' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='contact' placeholder='contact' required='required'>
+	</div>
+			<button class="btn btn-primary btn-sm" type='submit'><i class="fas fa-plus-square"><span class="pl-2">record</span></i></button>
+</form>
+
+<form action='' method='POST'  id='venue_record'>			
+		<p class="pt-3 font-weight-bold">	Venue:</p>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='venue_id' placeholder='venue_id' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='building' placeholder='building' required='required'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='number' name='capacity' placeholder='capacity' min='15' max='1000'>
+	</div>
+	<div class="form-group">
+		<input class="form-control form-control-sm" type='text' name='facilities' placeholder='facilities' required='required'>
+	</div>
+		<button class="btn btn-primary btn-sm" type='submit'><i class="fas fa-plus-square"><span class="pl-2">record</span></i></button>
+</form>
+
+</div>		
+</body>
 </html>
 <?php
+function get_post($var){
+		$sanitized=trim($var);
+		$sanitized=stripslashes($var);
+		$sanitized=htmlspecialchars($var);
+		return $sanitized;
+	}
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-	$connect=mysqli_connect('localhost','root','tony5610','school_venue_management_system');
+	$connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');
 
 	function get_post($var){
 		$sanitized=trim($var);
@@ -123,14 +163,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 	/*Query textarea logic */
 	$db_query=get_post($_POST['queries']);
 	if(isset($db_query)&&!empty($db_query)){	
-
-		$result=mysqli_query($connect, $db_query);
-		$numRows=mysqli_num_rows($result);
-
-		$db_query_run_status=($result==true||$numRows>0)?"<p>Query executed successfully</p><br>":"<p>Query execution failed</p><br>";
-		echo $db_query_run_status;
-
-	/*Displaying results for SELECT AND SHOW QUERIES*/
 		
 		echo '<div id="query_results">';
 
@@ -140,15 +172,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 				$info[]=mysqli_fetch_assoc($result);
 				}
 
-				echo '<table>';			
+				echo '<>';			
 				foreach($info as $value){
-					echo '<tr>';
+					echo '';
 					foreach($value as $val){
-						echo '<td>',$val,'</td>';
+						echo '',$val,'';
 					}
-					echo '</tr>';
+					echo '';
 				}
-				echo '</table>';
+				echo '</>';
 			}
 
 		echo '</div>';
@@ -236,10 +268,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 		}
 	}
 
-	/*Query to create view table on Sunday*/
+	/*Query to create view  on Sunday*/
 
 	/*$today=strtolower(date('l'));
-	if($today==='sunday'){
+	if($today==='monday'){
 	mysqli_query($connect,"CREATE OR REPLACE VIEW view_timetable AS SELECT timetable_id, status, timetable.venue_id, school, day_of_week, duration, cohort, course_code, capacity FROM timetable,venue WHERE timetable.venue_id=venue.venue_id;"); 
 	}*/
 	mysqli_close($connect);
