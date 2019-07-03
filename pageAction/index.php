@@ -25,7 +25,7 @@
 			<ul class="navbar-nav">		
 			<span class="navbar-text d-none d-md-block"><i class="fas fa-home"></i></span>
 			<li class="nav-item"><a class="nav-link" href="index">Home</a></li>	
-			<span class="navbar-text pl-4 d-none d-md-block"><i class="fas fa-university"></i></span>
+			<span class="navbar-text pl-4 d-none d-md-block"><i class="fas fa-phone"></i></span>
 			<li class="nav-item"><a class="nav-link" href="index?p=contactus">Contact&nbsp;Us</a></li>
 			<span class="navbar-text pl-4 d-none d-md-block"><i class="fas fa-lock-open"></i></span>
 			<li class="nav-item"><a class="nav-link" href="../login.html">Login</a></li>	

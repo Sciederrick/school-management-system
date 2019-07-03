@@ -15,10 +15,20 @@ $reg_no=$_SESSION['reg_no'];
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  					   
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  	
+
+  <script>
+  function timedRefresh(timeoutPeriod) {
+    setTimeout("location.reload(true);",timeoutPeriod);
+  }
+  window.onload = timedRefresh(60000);
+  </script>				   
+
+
+
 </head>
 <body>  
-<div class="container-fluid">  
+<div class="container-fluid showcase_tables">  
 <div class="d-flex flex-column justify-content-center align-content-around">     
 <div class="float-left pl-0">
    
@@ -46,23 +56,19 @@ $reg_no=$_SESSION['reg_no'];
           </select>                       
           <button class="btn btn-secondary btn-sm" type="submit">Go</button>  
     </form>           
-  </div>       
+  </div>   
+  <?php
+    $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');                                   
+    $school=$day='';
+    $school=$_GET['school']; 
+    $day=$_GET['day'];
+  ?>    
   <div class="box_free_venues">
     <?php                
-      $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');                                   
-      $school=$day='';
-      $school=$_GET['school']; 
-      $day=$_GET['day'];
-      	/*Query to create view  on Sunday*/
-
-/* 	$today=strtolower(date('l'));
-	if($today==='sunday'){
-  mysqli_query($connect,"CREATE OR REPLACE VIEW view_timetable AS SELECT timetable_id, status, timetable.venue_id, school, day_of_week, duration, cohort, course_code, capacity FROM timetable,venue WHERE timetable.venue_id=venue.venue_id;"); 
-	} */
       if(isset($school)&&!empty($school)){
         if(isset($day)&&!empty($day)){
 
-          $result=mysqli_query($connect,"SELECT * FROM view_timetable WHERE status='free' AND school='".$school."' AND day_of_week='".$day."' ORDER BY day_of_week");
+          $result=mysqli_query($connect,"SELECT * FROM view_timetable WHERE status='free' AND school='".$school."' AND day_of_week='".$day."' ORDER BY duration");
           $numRows=mysqli_num_rows($result);
           
             if($numRows>0){/*show free venues from view table*/
@@ -95,7 +101,8 @@ $reg_no=$_SESSION['reg_no'];
             mysqli_free_result($result);
 
             }
-        ?>  </tbody>
+              ?> 
+              </tbody>
       </div>
       </div>
       <div class="box_booking">
@@ -117,20 +124,33 @@ $reg_no=$_SESSION['reg_no'];
                       
                   ?>   
                   <div class="input-group input-group-sm mb-3">                
-                      <select class="custom-select-sm pt-0" name='course'>
-                        <?php
-                          for( $i=0 ; $i < sizeof($exploded_courses) ; $i++ ){
-                            echo '<option value='; echo $exploded_courses[$i]; echo '>'; echo $exploded_courses[$i]; echo '</option>';
-                          }
-                        }else{
-                          echo 'can\'t book, empty courses';
+                    <select class="custom-select-sm pt-0" name='course'>
+                      <?php
+                        for( $i=0 ; $i < sizeof($exploded_courses) ; $i++ ){
+                          echo '<option value='; echo $exploded_courses[$i]; echo '>'; echo $exploded_courses[$i]; echo '</option>';
                         }
-                        mysqli_free_result($result);
-                        ?>
-                      </select>                          
+                      }else{
+                        echo 'can\'t book, empty courses';
+                      }
+                      mysqli_free_result($result);
+                      $result=mysqli_query($connect,"SELECT timetable_id, venue_id, duration FROM view_timetable WHERE status='free' AND school='".$school."' AND day_of_week='".$day."' ORDER BY duration");
+                      unset($info,$numRows);
+                      $numRows=mysqli_num_rows($result);
+                      for($i=0; $i<$numRows; $i++){
+                      $info[]=mysqli_fetch_assoc($result);
+                      }
+                      ?>
+                    </select>                          
                    
-                  
-                  <input type="text" class="form_control text-center text-success" name="id" placeholder="id"> 
+                    <select class="custom-select-sm pt-0" name="id" placeholder="id">
+                    <?php 
+                    for($i=0; $i<$numRows; $i++){
+                    ?>
+                      <option value="<?php echo $info[$i]['timetable_id'];?>"><?php echo $info[$i]['venue_id'];?>&nbsp;&nbsp;<?php echo $info[$i]['duration'];?></option>
+                    <?php
+                    }
+                    ?>
+                    </select>
                     <div class="input-group-append">               
                       <button class="btn btn-success btn-sm" type="submit">book</button>
                     </div>            
@@ -150,7 +170,7 @@ $reg_no=$_SESSION['reg_no'];
 
           /*Get booked venues from view table*/
 
-          $result=mysqli_query($connect,"SELECT * FROM view_timetable WHERE status='booked' AND school='".$school."' AND day_of_week='".$day."' ORDER BY day_of_week");
+          $result=mysqli_query($connect,"SELECT * FROM view_timetable WHERE status='booked' AND school='".$school."' AND day_of_week='".$day."' ORDER BY duration");
           $numRows=mysqli_num_rows($result);
           
 
@@ -185,16 +205,32 @@ $reg_no=$_SESSION['reg_no'];
 
             }                  
             mysqli_free_result($result);
-        ?>  </tbody>           
+            ?>
+            </tbody>           
       </div>
       </div>
       <div class="box_release_form">
           <?php
+           $result=mysqli_query($connect,"SELECT timetable_id, venue_id, duration, cohort FROM view_timetable WHERE status='booked' AND school='".$school."' AND day_of_week='".$day."' ORDER BY duration");
+           unset($info,$numRows);
+           $numRows=mysqli_num_rows($result);
+           for($i=0; $i<$numRows; $i++){
+           $info[]=mysqli_fetch_assoc($result);
+           }
           if($numRows>0){/*show form for releasing booked venues*/
             ?>
             <form method="POST" action="" name="release_form" id="release_form">               
               <div class="input-group input-group-sm mb-3">
-                  <input type="text" class="form_control text-center text-primary" name="id" placeholder="id">
+                  <select class="custom-select-sm pt-0" name="id" placeholder="id">
+                    <?php 
+                    for($i=0; $i<$numRows; $i++){
+                    ?>
+                      <option value="<?php echo $info[$i]['timetable_id'];?>"><?php echo $info[$i]['venue_id'];?>&nbsp;&nbsp;<?php echo $info[$i]['duration'];?>&nbsp;<?php echo $info[$i]['cohort'];?></option>
+                    <?php
+                    }
+                    ?>
+                    </select>
+                 <!--  <input type="text" class="form_control text-center text-primary" name="id" placeholder="id"> --> <!-- replace with select:duration and venue_id -->
                 <div class="input-group-append">
                     <button class="btn btn-primary btn-sm" type="submit">release</button>
                 </div>
@@ -219,6 +255,21 @@ $reg_no=$_SESSION['reg_no'];
   </div>          
 </div>
 </div>
+
+<!-- Refresh box_free_venues and box_booked_venues divs -->
+<!-- <script type="text/javascript">
+  $(document).ready(function(){
+    $( '.showcase_tables').load( " free_booked_tables.php");
+    refresh();
+  });
+  function refresh(){
+    setTimeout(function(){
+    $( '.showcase_tables').fadeOut('slow').load( " free_booked_tables.php") 
+      .fadeIn('slow');
+      refresh();
+    },120000);
+  }
+</script> -->
 </body>
 </html>
 <!-- =========================================================================================== -->
@@ -248,10 +299,9 @@ if($_SERVER['REQUEST_METHOD']=='POST' && $_POST['transaction_type']=='book'){
 	/*Update view table*/
 	$result=mysqli_query($connect,"UPDATE view_timetable SET cohort='".$info['cohort']."', status='booked', course_code='".$course_code."' WHERE timetable_id='".$id."' AND status='free'");
 	
-
+  
 		if($result){
-			echo "<script>alert('Venue booked successfully')</script>";
-
+      
 	/*If book event successful keep track in transaction table*/		/*Get venue id from view_timetable*/
 			$result=mysqli_query($connect,"SELECT venue_id FROM view_timetable WHERE timetable_id='".$id."'");
 			$numRows=mysqli_num_rows($result);
@@ -268,10 +318,13 @@ if($_SERVER['REQUEST_METHOD']=='POST' && $_POST['transaction_type']=='book'){
 
 				/*record the transaction in the database*/
 			$result=mysqli_query($connect,"INSERT INTO transaction (venue_id,time,date,transaction_type,reg_no) VALUES ('$venue_id','$transaction_time','$transaction_date','$transaction_type','$reg_no')");
-			($result)?"":die("Fatal Error3");
-			
+      ($result)?"":die("Fatal Error3");
+
+      echo "<script type='text/javascript'>alert('Venue booked successfully')</script>";
+      unset($_POST);
+      $_POST=array();
 		}else{
-			echo "<script>alert('Booking failed)</script>";
+      echo "<script type='text/javascript'> alert('Booking failed)</script>";
 		}
 
 	mysqli_free_result($result);
@@ -325,14 +378,13 @@ $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_s
 				}				
 			}
 
-			if(empty($validate_cohort)) echo "<script>alert('You can only release venues for your group')</script>";
+      if(empty($validate_cohort)) echo "<script>alert('You can only release venues for your group')</script>";
 		}else{
 
 			if($info['cohort']===$info2['cohort']){
 			$result=mysqli_query($connect,"UPDATE view_timetable SET status='free', cohort='', course_code='' WHERE timetable_id='".$id."'");
 			if($result){
-				echo "<script>alert('Venue released successfully')</script>";
-
+        
 			/*If book event successful keep track in transaction table*/
 				/*Get venue id from view_timetable*/
 			$result=mysqli_query($connect,"SELECT venue_id FROM view_timetable WHERE timetable_id='".$id."'");
@@ -348,12 +400,14 @@ $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_s
 				$transaction_date=date("Y-m-d");
 				$transaction_time=date("h:i:sa");
 
-					/*revord the transaction in the database*/
+					/*record the transaction in the database*/
 				$result=mysqli_query($connect,"INSERT INTO transaction (venue_id,time,date,transaction_type, reg_no) VALUES ('$venue_id', '$transaction_time','$transaction_date','$transaction_type','$reg_no')");
 				($result)?"":die("Fatal Error4");
-
+        echo "<script>alert('Venue released successfully')</script>";
+        unset($_POST);
+        $_POST=array();
 			}else{
-				echo "<script>alert('Releasing failed')</script>";
+        echo "<script>alert('Releasing failed')</script>";
 			}
 		}else{
 			echo "<script>alert('You can only release venues for your group')</script>";
@@ -364,9 +418,9 @@ $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_s
 		mysqli_free_result($result);
 		mysqli_close($connect);
 }
-
-?><!-- 
-
-<script type='text/javascript'>
-$('#free_venues').load('./#free_venues');
-</script> -->
+?>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>

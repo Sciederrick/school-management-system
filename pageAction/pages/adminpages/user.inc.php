@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang='en'>
-<head>
-</head>
-<body>
+
 
 <h2><i class="fas fa-users-cog"><span class="pl-2 font-weight-light">Users<span></i></h2>
 <!-- Active Users -->
@@ -139,8 +137,7 @@ $numRows=mysqli_num_rows($result);
     </div>
     </div>
 </div>
-</body>
-</html>
+
 <?php
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $reg_no=$_POST['reg_no'];
@@ -172,5 +169,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }
 }// $_SERVER["REQUEST_METHOD"]
 ?>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 
 

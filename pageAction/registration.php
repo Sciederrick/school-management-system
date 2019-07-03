@@ -8,6 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/registration_validation.js"></script>
 </head>
 <body style="background-image:url(./img/dust_scratches.png)">
 <div class="container-fluid">
@@ -49,8 +50,8 @@
 		</div>
 	</div>
 </div>
-<script src="js/registration_validation.js"></script>
-<noscript>Javascript is disabled in your browser!</noscript>
+<!-- <script type="text/javascript" src="js/registration_validation.js"></script>
+<noscript>Javascript is disabled in your browser!</noscript> -->
 </body>
 </html>
 <!-- 

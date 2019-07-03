@@ -154,41 +154,6 @@ function get_post($var){
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 	$connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');
 
-	function get_post($var){
-		$sanitized=trim($var);
-		$sanitized=stripslashes($var);
-		$sanitized=htmlspecialchars($var);
-		return $sanitized;
-	}
-	/*Query textarea logic */
-	$db_query=get_post($_POST['queries']);
-	if(isset($db_query)&&!empty($db_query)){	
-		
-		echo '<div id="query_results">';
-
-		$info=array(array());
-			if($numRows<>0){
-				for( $i=0 ; $i < $numRows ; $i++ ){
-				$info[]=mysqli_fetch_assoc($result);
-				}
-
-				echo '<>';			
-				foreach($info as $value){
-					echo '';
-					foreach($value as $val){
-						echo '',$val,'';
-					}
-					echo '';
-				}
-				echo '</>';
-			}
-
-		echo '</div>';
-
-		mysqli_free_result($result);
-
-	}
-
 	/*timetable record logic*/
 	$status=$venue_id=$day_of_week=$duration=$cohort=$course_code='';
 	$status=get_post($_POST['status']);
@@ -199,8 +164,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 	if(isset($status)&&isset($venue_id)&&isset($day_of_week)&&isset($duration)&&isset($cohort)&&isset($course_code)){
 		if(!empty($status)&&!empty($venue_id)&&!empty($day_of_week)&&!empty($duration)&&!empty($cohort)&&!empty($course_code)){		
 			$result=mysqli_query($connect,"INSERT INTO timetable (status,venue_id,day_of_week,duration,cohort,course_code) VALUES('$status','$venue_id','$day_of_week','$duration','$cohort','$course_code')");
-			$task_status=($result)?"record inserted successfully":"error inserting record";
-			echo $task_status;
+			if($result){
+			echo "<script>alert('record inserted successfully')</script>";
+			}else{
+			echo "<script>alert('error inserting record')<script>";
+			}
 			mysqli_free_result($result);
 		}
 	}
@@ -215,8 +183,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 	if(isset($reg_no)&&isset($cohort)&&isset($name)&&isset($email)&&isset($pwd)){
 		if(!empty($reg_no)&&!empty($cohort)&&!empty($name)&&!empty($email)&&!empty($pwd)){			
 			$result=mysqli_query($connect,"INSERT INTO classrep(reg_no,cohort,name,email,password) VALUES('$reg_no','$cohort','$name','$email','$pwd')");
-			$task_status=($result)?"record inserted successfully":"error inserting record";
-			echo $task_status;
+			if($result){
+				echo "<script>alert('record inserted successfully')</script>";
+				}else{
+				echo "<script>alert('error inserting record')<script>";
+				}
 			mysqli_free_result($result);
 		}
 	}
@@ -230,8 +201,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 	if(isset($cohort)&&isset($reg_no)&&isset($no_of_students)&&isset($courses_enrolled)){
 		if(!empty($cohort)&&!empty($reg_no)&&!empty($no_of_students)&&!empty($courses_enrolled)){
 			$result=mysqli_query($connect,"INSERT INTO cohort(cohort,reg_no,no_of_students,courses_enrolled) VALUES('$cohort','$reg_no','$no_of_students','$courses_enrolled')");
-			$task_status=($result)?"record inserted successfully":"error inserting record";
-			echo $task_status;
+			if($result){
+				echo "<script>alert('record inserted successfully')</script>";
+				}else{
+				echo "<script>alert('error inserting record')<script>";
+				}
 			mysqli_free_result($result);
 		}
 	}
@@ -247,8 +221,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 	if(isset($cohort)&&isset($course_code)&&isset($course_title)&&isset($lecturers)&&isset($department)&&isset($contact)){
 		if(!empty($cohort)&&!empty($course_code)&&!empty($course_title)&&!empty($lecturers)&&isset($department)&&isset($contact)){
 			$result=mysqli_query($connect,"INSERT INTO course(cohort,course_code,course_title,lecturers,department,contact) VALUES('$cohort','$coure_code','$course_title','$lecturers','$department','$contact')");
-			$task_status=($result)?"record inserted successfully":"error inserting record";
-			echo $task_status;
+			if($result){
+				echo "<script>alert('record inserted successfully')</script>";
+				}else{
+				echo "<script>alert('error inserting record')<script>";
+				}
 			mysqli_free_result($result);
 		}
 	}
@@ -262,18 +239,20 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 	if(isset($venue_id)&&isset($building)&&isset($capacity)&&isset($facilities)){
 		if(!empty($venue_id)&&!empty($building)&&!empty($capacity)&&!empty($facilities)){
 			$result=mysqli_query($connect,"INSERT INTO venue(venue_id,building,capacity,facilities) VALUES('$venue_id','$building','$capacity','$facilities')");
-			$task_status=($result)?"record inserted successfully":"error inserting record";
-			echo $task_status;
+			if($result){
+				echo "<script>alert('record inserted successfully')</script>";
+				}else{
+				echo "<script>alert('error inserting record')<script>";
+				}
 			mysqli_free_result($result);
 		}
 	}
 
-	/*Query to create view  on Sunday*/
-
-	/*$today=strtolower(date('l'));
-	if($today==='monday'){
-	mysqli_query($connect,"CREATE OR REPLACE VIEW view_timetable AS SELECT timetable_id, status, timetable.venue_id, school, day_of_week, duration, cohort, course_code, capacity FROM timetable,venue WHERE timetable.venue_id=venue.venue_id;"); 
-	}*/
 	mysqli_close($connect);
 }
 ?>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>

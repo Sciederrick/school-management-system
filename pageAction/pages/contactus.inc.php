@@ -1,6 +1,11 @@
 <!-- Fetch email and phone number for menu suggestions-->
 <?php
 	session_start();
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+	
+	require 'vendor/autoload.php';
+
 	$reg_no=$_SESSION['reg_no'];
 
 	$connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');
@@ -42,7 +47,7 @@
 	</div> 
 
 	<div class="col-md-7 d-flex flex-wrap flex-column h-100 align-content-center justify-content-center order-md-1 order-0">
-		<p class="w-100 text-center text-monospace lead font-weight-bold text-secondary py-3">Send us a message</p>
+		<p class="w-100 text-center text-monospace lead font-weight-normal text-secondary py-5">Send us a message</p>
 		<form class="w-75 mx-auto" action="" method="POST" >
 		<div class="form-group">						
 			<input class="form-control" type="tel" id="phone_number" name="phone_number" placeholder="<?php echo $info['phone_number'];?>">
@@ -56,19 +61,18 @@
 			<button class="btn btn-primary" type="submit" id="send"><i class="fas fa-paper-plane">Send</i></button>
 		</form>
 		<?php			
-			session_start();
 			$reg_no=$_SESSION['reg_no'];				
-			// $reg_no='COM/15/17';
+			
 			$connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');
 
-			$result=mysqli_query($connect,"SELECT date, message, response FROM contactus WHERE reg_no='".$reg_no."' AND response IS NOT NULL ORDER BY contactus_id DESC");
+			/* $result=mysqli_query($connect,"SELECT date, message, response FROM contactus WHERE reg_no='".$reg_no."' AND response IS NOT NULL ORDER BY contactus_id DESC");
 
 			$numRows=mysqli_num_rows($result);
 
 			echo '<hr>';				
-			if($numRows<>0){		
+			if($numRows<>0){ */		
 			?>	
-			<div class="table-responsive">
+			<!-- <div class="table-responsive">
 				<p class="text-center text-monospace lead font-weight-bold text-secondary pt-2">Your responses</p>
 				<table class="table table-sm mx-auto table-striped">
 				<thead class="thead-dark">
@@ -78,9 +82,9 @@
 				<th>response</th>
 				</tr>
 				</thead>
-				<tbody>
+				<tbody> -->
 			<?php
-				foreach($result as $value){
+		/* 		foreach($result as $value){
 					echo '<tr>';
 					foreach($value as $val){
 						echo '<td class="text-monospace">',$val,'</td>';
@@ -92,7 +96,7 @@
 			}else{
 				echo '<h3 class="text-center text-info pt-3">No responses available</h3>';
 			}
-			echo '<hr>';
+			echo '<hr>'; */
 
 			mysqli_free_result($result);
 
@@ -120,14 +124,40 @@
 
 	if(isset($phone_number)&&isset($email)&&isset($message)&&isset($reg_no)){
 		if(!empty($phone_number)&&!empty($email)&&!empty($message)&&!empty($reg_no)){
-			
-			$result=mysqli_query($connect,"INSERT INTO contactus (time, date,reg_no,phone_number,email,message) VALUES ((CURRENT_TIME),(CURRENT_DATE), '$reg_no','$phone_number','$email','$message')");
+			$msg='Phone: '.$_POST['phone_number']."\n"
+				.'Email: '.$_POST['email']."\n"
+				.'Comment: '.$_POST['txtmsg'];
 
-				if($result){
-					echo "<script>alert('Message sent successfully')</script>";
+	$mail=new PHPMailer(true);
+
+	try{
+	$mail->SMTPDebug = 2; 
+	$mail->isSMTP();
+	$mail->SMTPAuth=true;
+	$mail->SMTPSecure='tls';
+	$mail->Host='smtp.gmail.com';
+	$mail->Port='587';//465 or 25 or 587
+	$mail->isHTML();
+	$mail->Username='derrickmbarani@gmail.com';
+	$mail->Password='derrick8';
+	$mail->setFrom($email);
+	$mail->Subject='Venue Management Request';
+	$mail->Body=$msg;
+	$mail->AddAddress('ernestmuisyoo@gmail.com'); /*  Forwading to another address */
+
+	$mail->send();?>
+	<script>alert(Message has been sent')</script><?php
+
+	}catch(Exception $e){
+    ?><script>alert(Message could not be sent.')</script><?php /* Mailer Error:{$mail->ErrorInfo}"; */
+}
+
+				if($mail->send()){
+				$result=mysqli_query($connect,"INSERT INTO contactus (time, date,reg_no,phone_number,email,message) VALUES ((CURRENT_TIME),(CURRENT_DATE), '$reg_no','$phone_number','$email','$message')");
+	 			echo "<script>alert('Message sent successfully')</script>";
 				}else{
 					echo "<script>alert('Sending Failed')</script>";					
-				}
+				} 
 		}
 	}
 
