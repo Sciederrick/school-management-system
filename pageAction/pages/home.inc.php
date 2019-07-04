@@ -28,12 +28,11 @@ $reg_no=$_SESSION['reg_no'];
 
 </head>
 <body>  
-<div class="container-fluid showcase_tables">  
+<div class="container-fluid">  
 <div class="d-flex flex-column justify-content-center align-content-around">     
-<div class="float-left pl-0">
-   
+<div>
     <!-- Form for school and day filters -->
-    <form action="" method="GET" class="my-3">        
+    <form class="form-inline p-3" action="" method="GET" class="my-3">        
           <select class="custom-select-sm pt-0" name="school">
             <option value="engineering">Engineering</option>
             <option value="medicine">Medicine</option>
@@ -55,8 +54,17 @@ $reg_no=$_SESSION['reg_no'];
             <option>friday</option>
           </select>                       
           <button class="btn btn-secondary btn-sm" type="submit">Go</button>  
-    </form>           
-  </div>   
+    </form>   
+    <form class="float-right form-inline pb-2" method="POST" action="generate_pdf.php">
+      <button class="btn btn-sm btn-danger mt-0" type="submit" name="generate_pdf" id="pdf"  data-toggle="tooltip" title="Download">
+        <i class="fas fa-file-pdf"><span class='pl-2'>Timetable</span></i>
+        <span class="spinner-grow spinner-grow-sm"></span>
+      </button>
+    </form>        
+  </div> 
+  
+
+    
   <?php
     $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');                                   
     $school=$day='';
@@ -419,8 +427,10 @@ $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_s
 		mysqli_close($connect);
 }
 ?>
-<script>
+
+<script type='text/javascript'>
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }
+    $('[data-toggle="tooltip"]').tooltip(); 
 </script>

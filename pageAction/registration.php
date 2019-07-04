@@ -8,13 +8,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/registration_validation.js"></script>
+	<script type="text/javascript" src="../js/registration_validation.js"></script>
 </head>
 <body style="background-image:url(./img/dust_scratches.png)">
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-5">
-			<img class="img-fluid mx-auto d-none d-md-block" src="../img/matt-flores-1620018-unsplash.jpg" height="100%" width="100%" class="rounded">
+			<img class="img-fluid mx-auto d-none d-md-block" src="../img/jason-briscoe-332508-unsplash.jpg" height="100%" width="100%" class="rounded">
 		</div>
 		<div class="col-md-7 pt-5 d-flex flex-wrap flex-column h-100 align-content-center justify-content-center">
 		<form class="w-75 py-2 px-3 mx-auto bg-light" action="" method="POST"  name="form" id="regForm" onsubmit="return validate();" enctype="multipart/form-data">
@@ -90,7 +90,7 @@ function get_post($var){
 					
 						if($result==true){
 							?>
-							<script>alert("Registration Successful!\nPlease wait for activation of your account after 24 hours")</script>						
+							<script>alert("Registration Successful!\nPlease wait for activation of your account..")</script>						
 							<?php
 						}
 						else{
