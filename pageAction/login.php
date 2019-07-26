@@ -26,6 +26,8 @@ function get_post($var){
 			   $result=mysqli_fetch_assoc(mysqli_query($connect,"SELECT name, cohort FROM classrep WHERE reg_no='".$reg_no."' AND password='".$password."' AND active='1'"));
 			   
 			 		if($result['name']==true && $result['cohort']<>'admin'){
+						$user_cohort=$result['cohort'];
+						$_SESSION['cohort']=$user_cohort;
 						header("Location:index.php");
 					}
 					else if($result['name']==true && $result['cohort']=='admin'){

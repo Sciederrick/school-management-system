@@ -1,8 +1,3 @@
-<!-- TO-DO LIST:
-*Logic for deleting view_timetable after a period of time 
-*How to check if a database of a table exists
-*VenueProfiles.inc.php
--->
 <?php
 session_start();
 $reg_no=$_SESSION['reg_no'];
@@ -70,6 +65,7 @@ $reg_no=$_SESSION['reg_no'];
     $school=$day='';
     $school=$_GET['school']; 
     $day=$_GET['day'];
+   
   ?>    
   <div class="box_free_venues">
     <?php                
@@ -78,6 +74,10 @@ $reg_no=$_SESSION['reg_no'];
 
           $result=mysqli_query($connect,"SELECT * FROM view_timetable WHERE status='free' AND school='".$school."' AND day_of_week='".$day."' ORDER BY duration");
           $numRows=mysqli_num_rows($result);
+
+          for($i=0; $i < $numRows; $i++){
+            $free_venues_info[$i]=mysqli_fetch_array($result);
+          }
           
             if($numRows>0){/*show free venues from view table*/
               ?>
@@ -85,10 +85,8 @@ $reg_no=$_SESSION['reg_no'];
               <table class="table table-sm table-light table-striped">
               <thead class="bg-success">
                 <tr>
-                  <th>id</th>                      
                   <th>status</th>                      
                   <th>venue</th>                      
-                  <th>school</th>                      
                   <th>day_of_week</th>                      
                   <th>duration</th>                      
                   <th>cohort</th>                      
@@ -98,21 +96,20 @@ $reg_no=$_SESSION['reg_no'];
               </thead>
               <tbody>
               <?php
-            foreach($result as $value){
+            for($i=0; $i < $numRows; $i++){
               echo '<tr>';
-              foreach($value as $val){
-                echo '<td><pre>',$val,'</pre></td>';
-              }
+                echo '<td><pre>',$free_venues_info[$i][1],'</pre></td><td><pre>',$free_venues_info[$i][2],'</td></pre><td><pre>',$free_venues_info[$i][4],'</pre></td><td><pre>',$free_venues_info[$i][5],'</pre></td><td><pre>',$free_venues_info[$i][6],'</td></pre><td><pre>',$free_venues_info[$i][7],'</pre></td><td><pre>',$free_venues_info[$i][8],'</pre></td>';
               echo '</tr>';
             }
+          
             echo '</table>';
             mysqli_free_result($result);
 
             }
               ?> 
               </tbody>
-      </div>
-      </div>
+          </div>
+          </div>
       <div class="box_booking">
         <?php
           if($numRows>0){/*show forms for booking free venues*/
@@ -175,12 +172,16 @@ $reg_no=$_SESSION['reg_no'];
       </div>
       <div class="box_booked_venues">
         <?php
+          $user_cohort=$_SESSION['cohort'];
 
-          /*Get booked venues from view table*/
-
-          $result=mysqli_query($connect,"SELECT * FROM view_timetable WHERE status='booked' AND school='".$school."' AND day_of_week='".$day."' ORDER BY duration");
+                    /*Get booked venues from view table*/
+          $result=mysqli_query($connect,"SELECT * FROM view_timetable WHERE status='booked' AND school='".$school."' AND day_of_week='".$day."' AND cohort='".$user_cohort."' ORDER BY duration");
           $numRows=mysqli_num_rows($result);
-          
+          $booked_venues_info[$i]=array(array());
+
+          for($i=0; $i < $numRows; $i++){
+            $booked_venues_info[$i]=mysqli_fetch_array($result);
+          }
 
             if($numRows>0){/*Display booked venues*/
 
@@ -189,28 +190,22 @@ $reg_no=$_SESSION['reg_no'];
             <table class="table table-sm table-light table-striped">
             <thead class="bg-primary">
               <tr>
-                <th>id</th>                      
                 <th>status</th>                      
                 <th>venue</th>                      
-                <th>school</th>                      
                 <th>day_of_week</th>                      
                 <th>duration</th>                      
-                <th>cohort</th>                      
                 <th>course</th>                      
                 <th>capacity</th>                      
               </tr>
             </thead>
             <tbody>
             <?php
-            foreach($result as $value){
+            for($i=0; $i < $numRows; $i++){
               echo '<tr>';
-              foreach($value as $val){
-                echo '<td><pre>',$val,'</pre></td>';
-              }
+                echo '<td><pre>',$booked_venues_info[$i][1],'</pre></td><td><pre>',$booked_venues_info[$i][2],'</td></pre><td><pre>',$booked_venues_info[$i][4],'</pre></td><td><pre>',$booked_venues_info[$i][5],'</td></pre><td><pre>',$booked_venues_info[$i][7],'</pre></td><td><pre>',$booked_venues_info[$i][8],'</pre></td>';
               echo '</tr>';
             }
             echo '</table>';
-
             }                  
             mysqli_free_result($result);
             ?>
@@ -219,7 +214,7 @@ $reg_no=$_SESSION['reg_no'];
       </div>
       <div class="box_release_form">
           <?php
-           $result=mysqli_query($connect,"SELECT timetable_id, venue_id, duration, cohort FROM view_timetable WHERE status='booked' AND school='".$school."' AND day_of_week='".$day."' ORDER BY duration");
+           $result=mysqli_query($connect,"SELECT timetable_id, venue_id, duration, cohort FROM view_timetable WHERE status='booked' AND school='".$school."' AND day_of_week='".$day."' AND cohort='".$user_cohort."' ORDER BY duration");
            unset($info,$numRows);
            $numRows=mysqli_num_rows($result);
            for($i=0; $i<$numRows; $i++){
@@ -233,7 +228,7 @@ $reg_no=$_SESSION['reg_no'];
                     <?php 
                     for($i=0; $i<$numRows; $i++){
                     ?>
-                      <option value="<?php echo $info[$i]['timetable_id'];?>"><?php echo $info[$i]['venue_id'];?>&nbsp;&nbsp;<?php echo $info[$i]['duration'];?>&nbsp;<?php echo $info[$i]['cohort'];?></option>
+                      <option value="<?php echo $info[$i]['timetable_id'];?>"><?php echo $info[$i]['venue_id'];?>&nbsp;&nbsp;<?php echo $info[$i]['duration'];?></option>
                     <?php
                     }
                     ?>
@@ -263,21 +258,6 @@ $reg_no=$_SESSION['reg_no'];
   </div>          
 </div>
 </div>
-
-<!-- Refresh box_free_venues and box_booked_venues divs -->
-<!-- <script type="text/javascript">
-  $(document).ready(function(){
-    $( '.showcase_tables').load( " free_booked_tables.php");
-    refresh();
-  });
-  function refresh(){
-    setTimeout(function(){
-    $( '.showcase_tables').fadeOut('slow').load( " free_booked_tables.php") 
-      .fadeIn('slow');
-      refresh();
-    },120000);
-  }
-</script> -->
 </body>
 </html>
 <!-- =========================================================================================== -->

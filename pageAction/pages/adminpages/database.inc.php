@@ -64,26 +64,6 @@
 	
 </form>
 
-<form action='' method='POST'  id='classrep_record'>			
-		<p class="pt-3 font-weight-bold">	Classrep:</p>
-	<div class="form-group">
-		<input class="form-control form-control-sm" type='text' name='reg_no' placeholder='reg_no' required='required'>
-	</div>
-	<div class="form-group">
-		<input class="form-control form-control-sm" type='text' name='cohort' placeholder='cohort' required='required'>
-	</div>
-	<div class="form-group">
-		<input class="form-control form-control-sm" type='text' name='name' placeholder='name' required='required'>
-	</div>
-	<div class="form-group">
-		<input class="form-control form-control-sm" type='email' name='email' placeholder='janedoe@gmail.com' required='required'>
-	</div>
-	<div class="form-group">
-		<input class="form-control form-control-sm" type='password' name='password' placeholder='password' required='required'>
-	</div>
-		<button class="btn btn-primary btn-sm" type='submit'><i class="fas fa-user-plus"><span class="pl-2">record</span></i></button>
-</form>
-
 <form action='' method='POST'  id='cohort_record'>			
 		<p class="pt-3 font-weight-bold">	Cohort:</p>
 	<div class="form-group">

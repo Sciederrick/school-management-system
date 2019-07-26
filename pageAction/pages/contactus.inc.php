@@ -39,9 +39,9 @@
 	<div class="col-md-5 d-flex flex-column order-md-0 order-1">		
 		<img class="image-fluid" src="../../img/contactus.jpg" style="width:inherit;opacity:0.3;z-index:-1">	
 		<ul class="bg-text list-unstyled font-weight-lighter">		
-		<li class="pb-5"><i class="fas fa-map-marker-alt">&nbsp;&nbsp;MAIN CAMPUS<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-dark font-weight-bold small">admin block, room 51</span></i></li>
-		<li class="pb-5"><i class="fas fa-phone"><a class="text-decoration-none text-reset" href="tel:+254743709788">&nbsp;&nbsp;Lets Talk</a><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-black small font-weight-bold">+254743709788</span></i></li>
-		<li class="pb-5"><i class="fas fa-envelope"><a class="text-decoration-none text-reset" href="mailto:derrickmbarani@gmail.com">&nbsp;&nbsp;General Support</a><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-black font-weight-bold small">venuenquiry@gmail.com</span></i></li>
+		<li class="pb-5"><i class="fas fa-map-marker-alt text-primary">&nbsp;&nbsp;MAIN CAMPUS<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white font-weight-bold small">admin block, room 51</span></i></li>
+		<li class="pb-5"><i class="fas fa-phone text-primary"><a class="text-decoration-none text-reset" href="tel:+254743709788">&nbsp;&nbsp;Lets Talk</a><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white small font-weight-bold">+254743709788</span></i></li>
+		<li class="pb-5"><i class="fas fa-envelope text-primary"><a class="text-decoration-none text-reset" href="mailto:derrickmbarani@gmail.com">&nbsp;&nbsp;General Support</a><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white font-weight-bold small">venuenquiry@gmail.com</span></i></li>
 		</ul>
 		
 	</div> 
@@ -62,44 +62,7 @@
 		</form>
 		<?php			
 			$reg_no=$_SESSION['reg_no'];				
-			
 			$connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');
-
-			/* $result=mysqli_query($connect,"SELECT date, message, response FROM contactus WHERE reg_no='".$reg_no."' AND response IS NOT NULL ORDER BY contactus_id DESC");
-
-			$numRows=mysqli_num_rows($result);
-
-			echo '<hr>';				
-			if($numRows<>0){ */		
-			?>	
-			<!-- <div class="table-responsive">
-				<p class="text-center text-monospace lead font-weight-bold text-secondary pt-2">Your responses</p>
-				<table class="table table-sm mx-auto table-striped">
-				<thead class="thead-dark">
-				<tr id="feedback_header_row border">
-				<th>Sent on</th>
-				<th>message</th>
-				<th>response</th>
-				</tr>
-				</thead>
-				<tbody> -->
-			<?php
-		/* 		foreach($result as $value){
-					echo '<tr>';
-					foreach($value as $val){
-						echo '<td class="text-monospace">',$val,'</td>';
-					}
-					echo '</tr>';
-				}
-				echo '</tbody></table></div>';
-
-			}else{
-				echo '<h3 class="text-center text-info pt-3">No responses available</h3>';
-			}
-			echo '<hr>'; */
-
-			mysqli_free_result($result);
-
 		?>
 	</div>
 
