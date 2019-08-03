@@ -58,8 +58,6 @@ $reg_no=$_SESSION['reg_no'];
     </form>        
   </div> 
   
-
-    
   <?php
     $connect=mysqli_connect('localhost','root','derrick8','school_venue_management_system');                                   
     $school=$day='';
@@ -94,7 +92,8 @@ $reg_no=$_SESSION['reg_no'];
                   <th>capacity</th>                      
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="booking_table">
+              <!-- The part that should be refreshed by Ajax -->
               <?php
             for($i=0; $i < $numRows; $i++){
               echo '<tr>';
@@ -107,6 +106,7 @@ $reg_no=$_SESSION['reg_no'];
 
             }
               ?> 
+              <!-- refreshed part ends here -->
               </tbody>
           </div>
           </div>
