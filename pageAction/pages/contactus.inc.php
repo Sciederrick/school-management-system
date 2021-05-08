@@ -101,12 +101,12 @@
 	$mail->Host='smtp.gmail.com';
 	$mail->Port='587';//465 or 25 or 587
 	$mail->isHTML();
-	$mail->Username='derrickmbarani@gmail.com';
-	$mail->Password='derrick8';
+	$mail->Username='example@gmail.com';
+	$mail->Password='';
 	$mail->setFrom($email);
 	$mail->Subject='Venue Management Request';
 	$mail->Body=$msg;
-	$mail->AddAddress('ernestmuisyoo@gmail.com'); /*  Forwading to another address */
+	$mail->AddAddress('example2@gmail.com'); /*  Forwading to another address */
 
 	$mail->send();?>
 	<script>alert(Message has been sent')</script><?php
